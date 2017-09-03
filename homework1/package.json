@@ -1,0 +1,25 @@
+{
+  "name": "homework1",
+  "version": "0.0.2",
+  "description": "I have no idea what this app will do",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "love",
+    "Uruguay",
+    "asado"
+  ],
+  "author": "Juan",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.6.0",
+    "mocha": "^3.5.0",
+    "should": "^12.0.0"
+  }
+}
