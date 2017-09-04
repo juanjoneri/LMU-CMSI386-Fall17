@@ -8,8 +8,8 @@ exports.change = function(cents) {
 
     var i = 0;
     coins.forEach(function(coin) {
-        ans[i] = Math.floor(cents / coins[i]);
-        cents -= ans[i]*coins[i];
+        ans[i] = Math.floor(cents / coin);
+        cents -= ans[i]*coin;
         i++;
     });
     return ans;
@@ -35,3 +35,20 @@ exports.scramble = function(str) {
 
     return str;
 }
+
+exports.powers = function(base, max, fun) {
+    let pow = 1;
+
+    while (pow <= max) {
+        fun(pow);
+        pow *= base;
+    }
+}
+
+// const nextSquare = (() => {
+//     let previous = -1;
+//     return () => {
+//     previous++;
+//     return previous * previous;
+// }
+// })();
