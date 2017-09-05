@@ -138,17 +138,22 @@ exports.cylinder = function(spec) {
 exports.makeCryptoFunctions = function(key, alg) {
     const crypto = require('crypto');
 
-    encrypt = function(str) {
-        const secret = key;
-        const hex = crypto.createHmac(alg, secret)
-                           .update(str)
-                           .digest('hex');
-        return hex;
-    }
-    decrypt = function(hex) {
-        return str;
+    let encrypt = function(str) {
+        const cipher = crypto.createCipher(alg, key);
+
+        let encrypted = cipher.update(str, 'utf8', 'hex');
+        encrypted += cipher.final('hex');
+        return encrypted;
     }
 
+    let decrypt = function(hex) {
+        const decipher = crypto.createDecipher(alg, key);
+
+        const encrypted = hex;
+        let decrypted = decipher.update(encrypted, 'hex', 'utf8');
+        decrypted += decipher.final('utf8');
+        return decrypted;
+    }
 
     return [encrypt, decrypt];
 }
