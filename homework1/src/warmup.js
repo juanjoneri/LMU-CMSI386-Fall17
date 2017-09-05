@@ -73,3 +73,15 @@ exports.interleave = function(x, ...y) {
 
     return ans;
 }
+
+exports.cylinder = function(spec) {
+    let { radius, height } = spec;
+
+    let surfaceArea = () => Math.PI*2*radius*height + 2*Math.PI*radius*radius;
+    let volume = () => Math.PI*radius*radius*height;
+
+    let widen = (factor) => { width = width*factor; }
+    let stretch = (factor) => { height = height*factor; }
+    let toString = () => `Cylinder with radius ${width} and height ${height}`;
+    return Object.freeze({ radius, height, surfaceArea, volume, widen, stretch, toString });
+}
