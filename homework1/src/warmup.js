@@ -4,9 +4,9 @@ exports.change = function(cents) {
     if (cents < 0) { throw new RangeError(); }
 
     const coins = [25, 10, 5, 1];
-    var ans = [0, 0, 0, 0];
+    let  ans = [0, 0, 0, 0];
 
-    var i = 0;
+    let i = 0;
     coins.forEach(function(coin) {
         ans[i] = Math.floor(cents / coin);
         cents -= ans[i]*coin;
@@ -45,10 +45,10 @@ exports.powers = function(base, max, fun) {
     }
 }
 
-// const nextSquare = (() => {
-//     let previous = -1;
-//     return () => {
-//     previous++;
-//     return previous * previous;
-// }
-// })();
+exports.fibGenerator = function*(base, max) {
+    let [a, b] = [1, 1];
+    while (b <= max) {
+        [a, b] = [b, a*base];
+        yield a;
+    }
+}
