@@ -45,10 +45,11 @@ exports.powers = function(base, max, fun) {
     }
 }
 
-exports.fibGenerator = function*(base, max) {
+exports.powersGenerator = function*(base, max) {
     let [a, b] = [1, 1];
     while (b <= max) {
-        [a, b] = [b, a*base];
+        a = b;
+        b = a*base;
         yield a;
     }
 }
