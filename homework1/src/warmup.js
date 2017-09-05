@@ -53,3 +53,23 @@ exports.powersGenerator = function*(base, max) {
         yield a;
     }
 }
+
+exports.interleave = function(x, ...y) {
+    let ans  = new Array();
+    let min = Math.min(x.length, y.length);
+    let max = Math.max(x.length, y.length);
+
+    let [i, j] = [0, 0];
+    while (i < min) {
+        ans[j++] = x[i];
+        ans[j++] = y[i];
+        i++;
+    }
+
+    while (i < max) {
+        ans[j++] = x.length === max ? x[i] : y[i];
+        i++;
+    }
+
+    return ans;
+}
