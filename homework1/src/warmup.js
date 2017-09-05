@@ -113,10 +113,10 @@ exports.cylinder = function(spec) {
     let surfaceArea = () => Math.PI * 2 * radius * height + 2 * Math.PI * radius * radius;
     let volume = () => Math.PI * radius * radius * height;
 
-    let widen = (factor) => { width *= factor; }
+    let widen = (factor) => { radius *= factor; }
     let stretch = (factor) => { height *= factor; }
     let toString = () => `Cylinder with radius ${width} and height ${height}`;
-    
+
     return Object.freeze({
         get radius() {return radius;},
         get height() {return height;},
