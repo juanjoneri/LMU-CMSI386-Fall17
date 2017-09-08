@@ -7,7 +7,7 @@
 exports.change = function(cents) {
     if (cents < 0) { throw new RangeError(); }
 
-    let  ans = [0, 0, 0, 0];
+    let ans = [0, 0, 0, 0];
 
     let i = 0;
     [25, 10, 5, 1].forEach(function(coin) {
@@ -72,6 +72,25 @@ exports.powersGenerator = function*(base, max) {
         b = a*base;
         yield a;
     }
+}
+/**
+ * A “chainable” function that accepts one string per call, but when called without arguments,
+ * returns the words previously passed, in order, separated by a single space.
+ */
+
+exports.say = function(str) {
+
+    let fun = function(string) {
+        if (str == undefined) {
+            str = '';
+        }
+        if (string == undefined) {
+            string = '';
+        }
+        return str + ' ' + string;
+    }
+
+    return fun;
 }
 
 /**
