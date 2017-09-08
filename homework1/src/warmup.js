@@ -7,11 +7,10 @@
 exports.change = function(cents) {
     if (cents < 0) { throw new RangeError(); }
 
-    const coins = [25, 10, 5, 1];
     let  ans = [0, 0, 0, 0];
 
     let i = 0;
-    coins.forEach(function(coin) {
+    [25, 10, 5, 1].forEach(function(coin) {
         ans[i] = Math.floor(cents / coin);
         cents -= ans[i]*coin;
         i++;
