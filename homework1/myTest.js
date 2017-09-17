@@ -3,8 +3,11 @@ const {
   powersGenerator, cylinder, makeCryptoFunctions, randomName,
 } = require('./src/warmup.js');
 
-randomName({ gender: 'jamon', region: 'argentina' }).then((name) => {
-  console.log(name);
-}, (err) => {
-    console.error(err);
-});
+// randomName({ gender: 'jamon', region: 'argentina' }).then((name) => {
+//   console.log(name);
+// }, (err) => {
+//     console.error(err);
+// });
+
+
+console.log(say());

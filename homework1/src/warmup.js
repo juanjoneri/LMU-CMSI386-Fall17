@@ -87,10 +87,16 @@ exports.say = function(str) {
         if (string == undefined) {
             string = '';
         }
-        return str + ' ' + string;
-    }
 
-    return fun;
+        if( string === '' ) {
+            return str
+        } else {
+            str = str + ' ' + string;
+            return fun;
+        }
+    }
+    if (str === undefined) { return '';
+    } else {return fun;}
 }
 
 /**
