@@ -188,3 +188,41 @@ exports.makeCryptoFunctions = function(key, alg) {
  * (Let the rejection happen naturally with whatever the module request-promise does.
  * You’ll get an object with a message field that has a response code and message from the API provider.)
  */
+exports.randomName = function(spec) {
+    let {gender, region} = spec;
+    const urlBuilder = require('build-url');
+    const https = require('https');
+
+    return new Promise((resolve, reject) => {
+
+        let adr = urlBuilder('https://uinames.com/api/', {
+          queryParams: {
+            gender: gender,
+            region: region,
+            amount: 1
+          }
+        });
+
+        let options = {
+                host : 'uinames.com',
+                path:  adr,
+                json: true
+        };
+
+        https.get(options, (resp) => {
+            let data = '';
+
+            resp.on('data', (chunk) => { data += chunk; });
+
+            resp.on('end', () => {
+                let person = JSON.parse(data);
+                let ans = `${person.surname}, ${person.name}`;
+                console.log(ans);
+                resolve(ans);
+            });
+
+        }).on("error", (err) => {
+            reject(err);
+        });
+    });
+}

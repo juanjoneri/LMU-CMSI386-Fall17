@@ -1,38 +1,32 @@
+const urlBuilder = require('build-url');
+const https = require('https');
 
 
-let buildUrl = require('build-url');
-let adr = buildUrl('https://uinames.com/api/', {
+let adr = urlBuilder('https://uinames.com/api/', {
   queryParams: {
-    gender: 'female',
-    region: 'germany'
+    gender: 'salame',
+    region: 'germany',
+    amount: '1'
   }
 });
-var url = require('url');
-console.log(adr);
-var q = url.parse(adr, true);
-var qdata = q.query;
 
-var options = {
+let options = {
         host : 'uinames.com',
-        path:  'https://uinames.com/api/?region=germany&gender=female',
+        path:  adr,
         json: true
-    };
-
-const https = require('https');
+};
 
 https.get(options, (resp) => {
     let data = '';
 
-  // A chunk of data has been recieved.
-  resp.on('data', (chunk) => {
-    data += chunk;
-  });
+    resp.on('data', (chunk) => { data += chunk; });
 
-  // The whole response has been received. Print out the result.
-  resp.on('end', () => {
-    console.log(data);
-  });
+    resp.on('end', () => {
+        let person = JSON.parse(data);
+        person.error !== undefined ? console.log("no functiona") : console.log("funciona");
+
+    });
 
 }).on("error", (err) => {
-  console.log("Error: " + err.message);
+    //console.log(err.message);
 });

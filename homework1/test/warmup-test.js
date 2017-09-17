@@ -194,6 +194,7 @@ describe('The random name function', () => {
   });
   it('produces a rejected promise for an unknown gender', (done) => {
     randomName({ gender: 'fefwefemale', region: 'canada' }).catch((error) => {
+      console.log(error);
       error.message.should.containEql('400');
     }).then(done, done);
   });
