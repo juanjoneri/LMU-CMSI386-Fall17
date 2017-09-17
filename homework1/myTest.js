@@ -11,3 +11,6 @@ const {
 
 
 console.log(say());
+console.log(say('hola')('como')());
+console.log(say('hola')());
+console.log(say('me')('gusta')('el')('pollo')());

@@ -79,24 +79,17 @@ exports.powersGenerator = function*(base, max) {
  */
 
 exports.say = function(str) {
+    if (str === undefined) { return ''; }
 
-    let fun = function(string) {
-        if (str == undefined) {
-            str = '';
-        }
-        if (string == undefined) {
-            string = '';
-        }
+    let addWord = function(newWord) {
+        if (newWord === undefined) { return str; }
 
-        if( string === '' ) {
-            return str
-        } else {
-            str = str + ' ' + string;
-            return fun;
-        }
+        str = str + ' ' + newWord;
+        return addWord;
     }
-    if (str === undefined) { return '';
-    } else {return fun;}
+
+    return addWord;
+
 }
 
 /**
