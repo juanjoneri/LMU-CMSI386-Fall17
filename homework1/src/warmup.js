@@ -215,12 +215,14 @@ exports.randomName = function(spec) {
             resp.on('data', (chunk) => { data += chunk; });
 
             resp.on('end', () => {
-                let person = JSON.parse(data);
-                let ans = `${person.surname}, ${person.name}`;
-                console.log(ans);
-                resolve(ans);
+                let obj = JSON.parse(data);
+                if (obj.error === undefined) {
+                    let ans = `${obj.surname}, ${obj.name}`;
+                    resolve(ans);
+                } else {
+                    reject(obj);
+                }
             });
-
         }).on("error", (err) => {
             reject(err);
         });
