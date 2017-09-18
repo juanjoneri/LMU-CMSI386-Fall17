@@ -210,12 +210,9 @@ exports.randomName = function(spec) {
             resp.on('end', () => {
                 let obj = JSON.parse(data);
                 let ans = `${obj.surname}, ${obj.name}`;
-                /2[0-9]{2}\b/.test(statusCode) ? resolve(ans) : reject({'message': `${statusCode}`});
+                /2[0-9]{2}\b/.test(statusCode) ? resolve(ans) : reject({'message': `${statusCode} - ${data}`});
             });
 
-            resp.on('error', (err) => {
-                reject(err);
-            });
         });
         request.on('error', reject);
         request.end();
