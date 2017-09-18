@@ -188,17 +188,9 @@ exports.makeCryptoFunctions = function(key, alg) {
  */
 exports.randomName = function(spec) {
     let {gender, region} = spec;
-    const urlBuilder = require('build-url');
-    const https = require('https');
+    let adr = `https://uinames.com/api/?gender=${gender}&region=${region}&amount=1`;
 
-    let adr = urlBuilder('https://uinames.com/api/', {
-      queryParams: {
-        gender: gender,
-        region: region,
-        amount: 1
-      }
-    });
-
+    // https request requires the adress to be passed as an object with some metadata
     let options = {
             host : 'uinames.com',
             path:  adr,
@@ -207,6 +199,7 @@ exports.randomName = function(spec) {
 
     return new Promise((resolve, reject) => {
 
+        const https = require('https');
         let request = https.request(options, (resp) => {
             let data = '';
 
@@ -218,6 +211,7 @@ exports.randomName = function(spec) {
                     let ans = `${obj.surname}, ${obj.name}`;
                     resolve(ans);
                 } else {
+                    console.log("here");
                     reject(obj);
                 }
             });
