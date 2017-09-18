@@ -201,19 +201,20 @@ exports.randomName = function(spec) {
 
         const https = require('https');
         let request = https.request(options, (resp) => {
+
+            var statusCode = resp.statusCode;
             let data = '';
 
             resp.on('data', (chunk) => { data += chunk; });
 
             resp.on('end', () => {
                 let obj = JSON.parse(data);
-                if (obj.error === undefined) {
-                    let ans = `${obj.surname}, ${obj.name}`;
-                    resolve(ans);
-                } else {
-                    console.log("here");
-                    reject(obj);
-                }
+                let ans = `${obj.surname}, ${obj.name}`;
+                /2[0-9]{2}\b/.test(statusCode) ? resolve(ans) : reject({'message': `${statusCode}`});
+            });
+
+            resp.on('error', (err) => {
+                reject(err);
             });
         });
         request.on('error', reject);
