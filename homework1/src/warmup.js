@@ -191,23 +191,23 @@ exports.randomName = function(spec) {
     const urlBuilder = require('build-url');
     const https = require('https');
 
+    let adr = urlBuilder('https://uinames.com/api/', {
+      queryParams: {
+        gender: gender,
+        region: region,
+        amount: 1
+      }
+    });
+
+    let options = {
+            host : 'uinames.com',
+            path:  adr,
+            json: true
+    };
+
     return new Promise((resolve, reject) => {
 
-        let adr = urlBuilder('https://uinames.com/api/', {
-          queryParams: {
-            gender: gender,
-            region: region,
-            amount: 1
-          }
-        });
-
-        let options = {
-                host : 'uinames.com',
-                path:  adr,
-                json: true
-        };
-
-        https.get(options, (resp) => {
+        let request = https.request(options, (resp) => {
             let data = '';
 
             resp.on('data', (chunk) => { data += chunk; });
@@ -221,8 +221,9 @@ exports.randomName = function(spec) {
                     reject(obj);
                 }
             });
-        }).on("error", (err) => {
-            reject(err);
         });
+        request.on('error', reject);
+        request.end();
+
     });
 }
