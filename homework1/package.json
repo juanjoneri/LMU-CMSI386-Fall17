@@ -12,7 +12,6 @@
   "author": "Natalia Dibbern",
   "license": "ISC",
   "dependencies": {
-    "build-url": "^1.0.10",
     "request": "^2.81.0",
     "request-promise": "^4.2.1"
   },
