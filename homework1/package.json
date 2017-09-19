@@ -1,24 +1,22 @@
 {
   "name": "homework1",
-  "version": "0.0.2",
-  "description": "I have no idea what this app will do",
+  "version": "1.0.0",
+  "description": "learning JavaScript",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
   "keywords": [
-    "love",
-    "Uruguay",
-    "asado"
+    "javaScript"
   ],
-  "author": "Juan",
+  "author": "Natalia Dibbern",
   "license": "ISC",
   "dependencies": {
     "request": "^2.81.0",
     "request-promise": "^4.2.1"
   },
   "devDependencies": {
-    "eslint": "^4.6.0",
+    "eslint": "^4.6.1",
     "mocha": "^3.5.0",
     "should": "^12.0.0"
   }

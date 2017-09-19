@@ -1,7 +1,7 @@
 const {
   change, stripQuotes, scramble, say, powers, interleave,
   powersGenerator, cylinder, makeCryptoFunctions, randomName,
-} = require('../src/warmup.js');
+} = require('../src/warmup');
 
 require('should'); // eslint-disable-line import/no-extraneous-dependencies
 
