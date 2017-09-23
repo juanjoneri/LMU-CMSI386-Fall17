@@ -3,28 +3,37 @@ import re
 
 
 def change(cents):
-    return tuple([0, 0, 0, 0]);
+    if cents < 0:
+        raise ValueError('amount cannot be negative')
+
+    ans = [0] * 4
+    i = 0;
+    for coin in [25, 10, 5, 1]:
+        ans[i] = cents//coin
+        cents -= ans[i] * coin
+        i += 1
+    return tuple(ans)
 
 def strip_quotes(str):
     return re.sub(r'\"\'',"",str)
 
 def scramble():
-    return s;
+    return s
 
 def strip_quotes(str):
-    return 0;
+    return 0
 
 def say():
-    return 0;
+    return 0
 
 def triples(value):
-    return 0;
+    return 0
 
 def powers(base, value):
-    return 0;
+    return 0
 
 def interleave():
-    return 0;
+    return 0
 
     import math
 
@@ -54,7 +63,7 @@ class Cylinder:
         return self
 
 def make_crypto_functions():
-    return 0;
+    return 0
 
 def random_name():
-    return 0;
+    return 0
