@@ -1,7 +1,6 @@
 import math
 import re
 
-
 def change(cents):
     if cents < 0:
         raise ValueError('amount cannot be negative')
@@ -9,13 +8,13 @@ def change(cents):
     ans = [0] * 4
     i = 0;
     for coin in [25, 10, 5, 1]:
-        ans[i] = cents//coin
+        ans[i] = cents // coin
         cents -= ans[i] * coin
         i += 1
     return tuple(ans)
 
-def strip_quotes(str):
-    return re.sub(r'\"\'',"",str)
+def strip_quotes(str=''):
+    return re.sub(r'[\"\'\\]', '', str)
 
 def scramble():
     return s
