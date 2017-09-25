@@ -24,7 +24,7 @@ exports.change = function (cents) {
  */
 exports.stripQuotes = function (str) {
   return str.replace(/["'\\]/g, '');
-}
+};
 
 /**
  * A function that randomly permutes a string.
@@ -46,7 +46,7 @@ exports.scramble = function (str) {
   }
 
   return str;
-}
+};
 
 /**
  * A function that yields successive powers of a base starting
@@ -59,7 +59,7 @@ exports.powers = function (base, max, fun) {
     fun(pow);
     pow *= base;
   }
-}
+};
 
 /**
  * A JavaScript generator function that yields successive powers of a
@@ -72,7 +72,7 @@ exports.powersGenerator = function*(base, max) {
     b = a*base;
     yield a;
   }
-}
+};
 /**
  * A “chainable” function that accepts one string per call, but when called without arguments,
  * returns the words previously passed, in order, separated by a single space.
@@ -86,10 +86,10 @@ exports.say = function (str) {
 
     str = str + ' ' + newWord;
     return addWord;
-  }
+};
 
   return addWord;
-}
+};
 
 /**
  * A function that interleaves an array with a bunch of values.
@@ -114,7 +114,7 @@ exports.interleave = function (x, ...y) {
   }
 
   return ans;
-}
+};
 
 /**
  * A function that creates a cylinder object in the “Crockford Classless” style.
@@ -130,7 +130,7 @@ exports.cylinder = function (spec) {
   let volume = () => Math.PI * radius * radius * height;
 
   let widen = (factor) => { radius *= factor; }
-  let stretch = (factor) => { height *= factor; }
+  let stretch = (factor) => { height *= factor; };
   let toString = () => `Cylinder with radius ${width} and height ${height}`;
 
   return Object.freeze({
@@ -141,7 +141,7 @@ exports.cylinder = function (spec) {
     widen,
     stretch,
     toString });
-}
+};
 
 /**
  * A function that accepts two arguments: a crypto key and a crypto algorithm,
