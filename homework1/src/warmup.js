@@ -97,7 +97,7 @@ exports.say = function (str) {
  * the “extra” elements should end up at the end of the result.
  */
 exports.interleave = function (x, ...y) {
-  let ans  = new Array();
+  let ans  = [];
   let min = Math.min(x.length, y.length);
   let max = Math.max(x.length, y.length);
 
@@ -129,7 +129,7 @@ exports.cylinder = function (spec) {
   let surfaceArea = () => Math.PI * 2 * radius * height + 2 * Math.PI * radius * radius;
   let volume = () => Math.PI * radius * radius * height;
 
-  let widen = (factor) => { radius *= factor; }
+  let widen = (factor) => { radius *= factor; };
   let stretch = (factor) => { height *= factor; };
   let toString = () => `Cylinder with radius ${width} and height ${height}`;
 
@@ -160,7 +160,7 @@ exports.makeCryptoFunctions = function (key, alg) {
     let encrypted = cipher.update(str, 'utf8', 'hex');
     encrypted += cipher.final('hex');
     return encrypted;
-  }
+};
 
   let decrypt = function (hex) {
     const decipher = crypto.createDecipher(alg, key);
@@ -169,10 +169,10 @@ exports.makeCryptoFunctions = function (key, alg) {
     let decrypted = decipher.update(encrypted, 'hex', 'utf8');
     decrypted += decipher.final('utf8');
     return decrypted;
-  }
+};
 
   return [encrypt, decrypt];
-}
+};
 
 
 /**
