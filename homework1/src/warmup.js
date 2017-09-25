@@ -4,26 +4,26 @@
  * respectively, the smallest number of U.S. quarters, dimes, nickels, and pennies
  * that equal the given amount.
  */
-exports.change = function(cents) {
-    if (cents < 0) { throw new RangeError(); }
+exports.change = function (cents) {
+  if (cents < 0) { throw new RangeError(); }
 
-    let ans = [0, 0, 0, 0];
+  let ans = [0, 0, 0, 0];
 
-    let i = 0;
-    [25, 10, 5, 1].forEach(function(coin) {
-        ans[i] = Math.floor(cents / coin);
-        cents -= ans[i]*coin;
-        i++;
-    });
-    return ans;
+  let i = 0;
+  [25, 10, 5, 1].forEach(function (coin) {
+    ans[i] = Math.floor(cents / coin);
+    cents -= ans[i]*coin;
+    i++;
+  });
+  return ans;
 };
 
 /**
  * A function that accepts a string and returns a new string equivalent to the
  *  argument but with all apostrophes and double quotes removed.
  */
-exports.stripQuotes = function(str) {
-    return str.replace(/["'\\]/g, '');
+exports.stripQuotes = function (str) {
+  return str.replace(/["'\\]/g, '');
 }
 
 /**
@@ -31,34 +31,34 @@ exports.stripQuotes = function(str) {
  * What does random mean? It means that each time you call the function for a given argument,
  * all possible permutations are equally likely. Random is not the same as arbitrary.
  */
-exports.scramble = function(str) {
-    const MAX_N_SWAPS = 100;
-    const N_SWAPS = Math.floor(Math.random() * MAX_N_SWAPS);
-    const STR_LEN = str.length;
+exports.scramble = function (str) {
+  const MAX_N_SWAPS = 100;
+  const N_SWAPS = Math.floor(Math.random() * MAX_N_SWAPS);
+  const STR_LEN = str.length;
 
-    for (let i = 0; i < N_SWAPS; ++i) {
-        let pos1 = Math.floor(Math.random() * STR_LEN);
-        let pos2 = Math.floor(Math.random() * STR_LEN);
-        let char1 = str[pos1];
-        let char2 = str[pos2];
-        str = str.replace(str[pos1], char2);
-        str = str.replace(str[pos2], char1);
-    }
+  for (let i = 0; i < N_SWAPS; ++i) {
+    let pos1 = Math.floor(Math.random() * STR_LEN);
+    let pos2 = Math.floor(Math.random() * STR_LEN);
+    let char1 = str[pos1];
+    let char2 = str[pos2];
+    str = str.replace(str[pos1], char2);
+    str = str.replace(str[pos2], char1);
+  }
 
-    return str;
+  return str;
 }
 
 /**
  * A function that yields successive powers of a base starting
  * at 1 and going up to some limit. Consume the values with a callback.
  */
-exports.powers = function(base, max, fun) {
-    let pow = 1;
+exports.powers = function (base, max, fun) {
+  let pow = 1;
 
-    while (pow <= max) {
-        fun(pow);
-        pow *= base;
-    }
+  while (pow <= max) {
+    fun(pow);
+    pow *= base;
+  }
 }
 
 /**
@@ -66,29 +66,29 @@ exports.powers = function(base, max, fun) {
  * base starting at 1 and going up to some limit.
  */
 exports.powersGenerator = function*(base, max) {
-    let [a, b] = [1, 1];
-    while (b <= max) {
-        a = b;
-        b = a*base;
-        yield a;
-    }
+  let [a, b] = [1, 1];
+  while (b <= max) {
+    a = b;
+    b = a*base;
+    yield a;
+  }
 }
 /**
  * A “chainable” function that accepts one string per call, but when called without arguments,
  * returns the words previously passed, in order, separated by a single space.
  */
 
-exports.say = function(str) {
-    if (str === undefined) { return ''; }
+exports.say = function (str) {
+  if (str === undefined) { return ''; }
 
-    let addWord = function(newWord) {
-        if (newWord === undefined) { return str; }
+  let addWord = function (newWord) {
+    if (newWord === undefined) { return str; }
 
-        str = str + ' ' + newWord;
-        return addWord;
-    }
-
+    str = str + ' ' + newWord;
     return addWord;
+  }
+
+  return addWord;
 }
 
 /**
@@ -96,24 +96,24 @@ exports.say = function(str) {
  * If the array length is not the same as the number of values to interleave,
  * the “extra” elements should end up at the end of the result.
  */
-exports.interleave = function(x, ...y) {
-    let ans  = new Array();
-    let min = Math.min(x.length, y.length);
-    let max = Math.max(x.length, y.length);
+exports.interleave = function (x, ...y) {
+  let ans  = new Array();
+  let min = Math.min(x.length, y.length);
+  let max = Math.max(x.length, y.length);
 
-    let [i, j] = [0, 0];
-    while (i < min) {
-        ans[j++] = x[i];
-        ans[j++] = y[i];
-        i++;
-    }
+  let [i, j] = [0, 0];
+  while (i < min) {
+    ans[j++] = x[i];
+    ans[j++] = y[i];
+    i++;
+  }
 
-    while (i < max) {
-        ans[j++] = x.length === max ? x[i] : y[i];
-        i++;
-    }
+  while (i < max) {
+    ans[j++] = x.length === max ? x[i] : y[i];
+    i++;
+  }
 
-    return ans;
+  return ans;
 }
 
 /**
@@ -123,24 +123,24 @@ exports.interleave = function(x, ...y) {
  * mutates the radius by a given factor and a stretch method to grow the height.
  * Expose the radius and height via getters.
  */
-exports.cylinder = function(spec) {
-    let {radius = 1, height = 1} = spec;
+exports.cylinder = function (spec) {
+  let {radius = 1, height = 1} = spec;
 
-    let surfaceArea = () => Math.PI * 2 * radius * height + 2 * Math.PI * radius * radius;
-    let volume = () => Math.PI * radius * radius * height;
+  let surfaceArea = () => Math.PI * 2 * radius * height + 2 * Math.PI * radius * radius;
+  let volume = () => Math.PI * radius * radius * height;
 
-    let widen = (factor) => { radius *= factor; }
-    let stretch = (factor) => { height *= factor; }
-    let toString = () => `Cylinder with radius ${width} and height ${height}`;
+  let widen = (factor) => { radius *= factor; }
+  let stretch = (factor) => { height *= factor; }
+  let toString = () => `Cylinder with radius ${width} and height ${height}`;
 
-    return Object.freeze({
-        get radius() {return radius;},
-        get height() {return height;},
-        surfaceArea,
-        volume,
-        widen,
-        stretch,
-        toString });
+  return Object.freeze({
+    get radius() {return radius;},
+    get height() {return height;},
+    surfaceArea,
+    volume,
+    widen,
+    stretch,
+    toString });
 }
 
 /**
@@ -151,27 +151,27 @@ exports.cylinder = function(spec) {
  * into a string. Use the built-in Node crypto module.
  */
 
-exports.makeCryptoFunctions = function(key, alg) {
-    const crypto = require('crypto');
+exports.makeCryptoFunctions = function (key, alg) {
+  const crypto = require('crypto');
 
-    let encrypt = function(str) {
-        const cipher = crypto.createCipher(alg, key);
+  let encrypt = function (str) {
+    const cipher = crypto.createCipher(alg, key);
 
-        let encrypted = cipher.update(str, 'utf8', 'hex');
-        encrypted += cipher.final('hex');
-        return encrypted;
-    }
+    let encrypted = cipher.update(str, 'utf8', 'hex');
+    encrypted += cipher.final('hex');
+    return encrypted;
+  }
 
-    let decrypt = function(hex) {
-        const decipher = crypto.createDecipher(alg, key);
+  let decrypt = function (hex) {
+    const decipher = crypto.createDecipher(alg, key);
 
-        const encrypted = hex;
-        let decrypted = decipher.update(encrypted, 'hex', 'utf8');
-        decrypted += decipher.final('utf8');
-        return decrypted;
-    }
+    const encrypted = hex;
+    let decrypted = decipher.update(encrypted, 'hex', 'utf8');
+    decrypted += decipher.final('utf8');
+    return decrypted;
+  }
 
-    return [encrypt, decrypt];
+  return [encrypt, decrypt];
 }
 
 
@@ -190,12 +190,12 @@ exports.makeCryptoFunctions = function(key, alg) {
 const request = require('request-promise');
 
 exports.randomName = ({region, gender}) => request({
-    method: 'GET',
-    uri: 'https://uinames.com/api/',
-    json: true,
-    qs: {
-        region,
-        gender,
-        amount: 1,
-    }
+  method: 'GET',
+  uri: 'https://uinames.com/api/',
+  json: true,
+  qs: {
+    region,
+    gender,
+    amount: 1,
+  }
 }).then(p => `${p.surname}, ${p.name}`);
