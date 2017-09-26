@@ -102,15 +102,17 @@ exports.say = function (str) {
  * the “extra” elements should end up at the end of the result.
  */
 exports.interleave = function (x, ...y) {
-  let ans  = [];
-  let min = Math.min(x.length, y.length);
-  let max = Math.max(x.length, y.length);
+  const ans = [];
+  const min = Math.min(x.length, y.length);
+  const max = Math.max(x.length, y.length);
 
   let [i, j] = [0, 0];
   while (i < min) {
-    ans[j++] = x[i];
-    ans[j++] = y[i];
-    i++;
+    ans[j] = x[i];
+    j += 1;
+    ans[j] = y[i];
+    j += 1;
+    i += 1;
 }
 
 while (i < max) {
