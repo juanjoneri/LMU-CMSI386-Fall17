@@ -83,13 +83,15 @@ exports.powersGenerator = function* (base, max) {
 
 exports.say = function (str) {
   if (str === undefined) { return ''; }
+  let composite = str;
 
-  let addWord = function (newWord) {
-    if (newWord === undefined) { return str; }
+  const addWord = function (newWord) {
+    if (newWord === undefined) { return composite; }
 
-    str = str + ' ' + newWord;
+    const wordToAdd = newWord;
+    composite = composite.concat(' ').concat(wordToAdd);
     return addWord;
-};
+  };
 
   return addWord;
 };
