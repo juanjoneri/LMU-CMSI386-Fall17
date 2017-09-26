@@ -11,7 +11,7 @@ exports.change = function (cents) {
   const ans = [0, 0, 0, 0];
 
   let i = 0;
-  [25, 10, 5, 1].forEach( (coin) => {
+  [25, 10, 5, 1].forEach((coin) => {
     ans[i] = Math.floor(remCents / coin);
     remCents -= ans[i] * coin;
     i += 1;
@@ -148,8 +148,8 @@ exports.cylinder = function (spec) {
     volume,
     widen,
     stretch,
-    toString });
-
+    toString,
+  });
 };
 
 /**
@@ -160,9 +160,9 @@ exports.cylinder = function (spec) {
  * into a string. Use the built-in Node crypto module.
  */
 
-exports.makeCryptoFunctions = function (key, alg) {
-  const crypto = require('crypto');
+const crypto = require('crypto');
 
+exports.makeCryptoFunctions = function (key, alg) {
   const encrypt = function (str) {
     const cipher = crypto.createCipher(alg, key);
 
@@ -193,12 +193,12 @@ exports.makeCryptoFunctions = function (key, alg) {
  * Simply for practice, your promise should with resolve successfully with a
  * string of the form 'Surname, name', or reject if there are any problems.
  * (Let the rejection happen naturally with whatever the module request-promise does.
- * You’ll get an object with a message field that has a response code and message from the API provider.)
+ * You’ll get an object with a message field that has a response code and message.)
  */
 
 const request = require('request-promise');
 
-exports.randomName = ({region, gender}) => request({
+exports.randomName = ({ region, gender }) => request({
   method: 'GET',
   uri: 'https://uinames.com/api/',
   json: true,
@@ -206,5 +206,5 @@ exports.randomName = ({region, gender}) => request({
     region,
     gender,
     amount: 1,
-  }
+  },
 }).then(p => `${p.surname}, ${p.name}`);
