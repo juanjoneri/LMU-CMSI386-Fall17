@@ -5,15 +5,16 @@
  * that equal the given amount.
  */
 exports.change = function (cents) {
-  if (cents < 0) { throw new RangeError(); }
+  let remCents = cents;
+  if (remCents < 0) { throw new RangeError(); }
 
   let ans = [0, 0, 0, 0];
 
   let i = 0;
   [25, 10, 5, 1].forEach(function (coin) {
-    ans[i] = Math.floor(cents / coin);
-    cents -= ans[i]*coin;
-    i++;
+    ans[i] = Math.floor(remCents / coin);
+    remCents -= ans[i]*coin;
+    i += 1;
   });
   return ans;
 };
@@ -36,9 +37,9 @@ exports.scramble = function (str) {
   const N_SWAPS = Math.floor(Math.random() * MAX_N_SWAPS);
   const STR_LEN = str.length;
 
-  for (let i = 0; i < N_SWAPS; ++i) {
-    let pos1 = Math.floor(Math.random() * STR_LEN);
-    let pos2 = Math.floor(Math.random() * STR_LEN);
+  for (let i = 0; i < N_SWAPS; i += 1) {
+    const pos1 = Math.floor(Math.random() * STR_LEN);
+    const pos2 = Math.floor(Math.random() * STR_LEN);
     let char1 = str[pos1];
     let char2 = str[pos2];
     str = str.replace(str[pos1], char2);
@@ -98,22 +99,22 @@ exports.say = function (str) {
  */
 exports.interleave = function (x, ...y) {
   let ans  = [];
-  let min = Math.min(x.length, y.length);
-  let max = Math.max(x.length, y.length);
+let min = Math.min(x.length, y.length);
+let max = Math.max(x.length, y.length);
 
-  let [i, j] = [0, 0];
-  while (i < min) {
-    ans[j++] = x[i];
-    ans[j++] = y[i];
-    i++;
-  }
+let [i, j] = [0, 0];
+while (i < min) {
+  ans[j++] = x[i];
+  ans[j++] = y[i];
+  i++;
+}
 
-  while (i < max) {
-    ans[j++] = x.length === max ? x[i] : y[i];
-    i++;
-  }
+while (i < max) {
+  ans[j++] = x.length === max ? x[i] : y[i];
+  i++;
+}
 
-  return ans;
+return ans;
 };
 
 /**

@@ -1,0 +1,62 @@
+
+/Users/ndibbern/Documents/Main/CMSI386-Fall.2017/LMU-CMSI386-Fall17/homework1/src/warmup.js
+    7:18  warning  Unexpected unnamed function                             func-names
+   11:7   error    'ans' is never reassigned. Use 'const' instead          prefer-const
+   14:26  error    Unexpected function expression                          prefer-arrow-callback
+   14:26  warning  Unexpected unnamed function                             func-names
+   16:23  error    Infix operators must be spaced                          space-infix-ops
+   26:23  warning  Unexpected unnamed function                             func-names
+   35:20  warning  Unexpected unnamed function                             func-names
+   43:9   error    'char1' is never reassigned. Use 'const' instead        prefer-const
+   44:9   error    'char2' is never reassigned. Use 'const' instead        prefer-const
+   45:5   error    Assignment to function parameter 'str'                  no-param-reassign
+   46:5   error    Assignment to function parameter 'str'                  no-param-reassign
+   56:18  warning  Unexpected unnamed function                             func-names
+   69:27  warning  Unexpected unnamed generator function                   func-names
+   69:35  error    Missing space after *                                   generator-star-spacing
+   73:10  error    Infix operators must be spaced                          space-infix-ops
+   82:15  warning  Unexpected unnamed function                             func-names
+   85:7   error    'addWord' is never reassigned. Use 'const' instead      prefer-const
+   85:17  warning  Unexpected unnamed function                             func-names
+   88:5   error    Assignment to function parameter 'str'                  no-param-reassign
+   88:11  error    Unexpected string concatenation                         prefer-template
+   90:1   error    Expected indentation of 2 spaces but found 0            indent
+  100:22  warning  Unexpected unnamed function                             func-names
+  101:7   error    'ans' is never reassigned. Use 'const' instead          prefer-const
+  101:12  error    Multiple spaces found before '='                        no-multi-spaces
+  102:7   error    'min' is never reassigned. Use 'const' instead          prefer-const
+  103:7   error    'max' is never reassigned. Use 'const' instead          prefer-const
+  127:20  warning  Unexpected unnamed function                             func-names
+  128:7   error    A space is required after '{'                           object-curly-spacing
+  128:30  error    A space is required before '}'                          object-curly-spacing
+  130:7   error    'surfaceArea' is never reassigned. Use 'const' instead  prefer-const
+  130:48  error    Unexpected mix of '*' and '+'                           no-mixed-operators
+  130:57  error    Unexpected mix of '*' and '+'                           no-mixed-operators
+  130:57  error    Unexpected mix of '+' and '*'                           no-mixed-operators
+  130:80  error    Unexpected mix of '+' and '*'                           no-mixed-operators
+  131:7   error    'volume' is never reassigned. Use 'const' instead       prefer-const
+  133:7   error    'widen' is never reassigned. Use 'const' instead        prefer-const
+  134:7   error    'stretch' is never reassigned. Use 'const' instead      prefer-const
+  135:7   error    'toString' is never reassigned. Use 'const' instead     prefer-const
+  135:48  error    'width' is not defined                                  no-undef
+  138:18  error    Requires a space after '{'                              block-spacing
+  138:33  error    Requires a space before '}'                             block-spacing
+  139:18  error    Requires a space after '{'                              block-spacing
+  139:33  error    Requires a space before '}'                             block-spacing
+  144:14  error    Expected a line break before this closing brace         object-curly-newline
+  155:31  warning  Unexpected unnamed function                             func-names
+  156:18  error    Unexpected require()                                    global-require
+  158:7   error    'encrypt' is never reassigned. Use 'const' instead      prefer-const
+  158:17  warning  Unexpected unnamed function                             func-names
+  164:1   error    Expected indentation of 2 spaces but found 0            indent
+  166:7   error    'decrypt' is never reassigned. Use 'const' instead      prefer-const
+  166:17  warning  Unexpected unnamed function                             func-names
+  173:1   error    Expected indentation of 2 spaces but found 0            indent
+  188:1   error    Line 188 exceeds the maximum line length of 100         max-len
+  193:23  error    A space is required after '{'                           object-curly-spacing
+  193:38  error    A space is required before '}'                          object-curly-spacing
+  201:4   error    Missing trailing comma                                  comma-dangle
+
+✖ 56 problems (43 errors, 13 warnings)
+  33 errors, 0 warnings potentially fixable with the `--fix` option.
+
