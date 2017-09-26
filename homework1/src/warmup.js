@@ -132,23 +132,24 @@ exports.interleave = function (x, ...y) {
  * Expose the radius and height via getters.
  */
 exports.cylinder = function (spec) {
-  let {radius = 1, height = 1} = spec;
+  let { radius = 1, height = 1 } = spec;
 
-  let surfaceArea = () => Math.PI * 2 * radius * height + 2 * Math.PI * radius * radius;
-  let volume = () => Math.PI * radius * radius * height;
+  const surfaceArea = () => (Math.PI * 2 * radius * height) + (2 * Math.PI * radius * radius);
+  const volume = () => Math.PI * radius * radius * height;
 
-  let widen = (factor) => { radius *= factor; };
-  let stretch = (factor) => { height *= factor; };
-  let toString = () => `Cylinder with radius ${width} and height ${height}`;
+  const widen = (factor) => { radius *= factor; };
+  const stretch = (factor) => { height *= factor; };
+  const toString = () => `Cylinder with radius ${radius} and height ${height}`;
 
   return Object.freeze({
-    get radius() {return radius;},
-    get height() {return height;},
+    get radius() { return radius; },
+    get height() { return height; },
     surfaceArea,
     volume,
     widen,
     stretch,
     toString });
+
 };
 
 /**
@@ -162,22 +163,22 @@ exports.cylinder = function (spec) {
 exports.makeCryptoFunctions = function (key, alg) {
   const crypto = require('crypto');
 
-  let encrypt = function (str) {
+  const encrypt = function (str) {
     const cipher = crypto.createCipher(alg, key);
 
     let encrypted = cipher.update(str, 'utf8', 'hex');
     encrypted += cipher.final('hex');
     return encrypted;
-};
+  };
 
-  let decrypt = function (hex) {
+  const decrypt = function (hex) {
     const decipher = crypto.createDecipher(alg, key);
 
     const encrypted = hex;
     let decrypted = decipher.update(encrypted, 'hex', 'utf8');
     decrypted += decipher.final('utf8');
     return decrypted;
-};
+  };
 
   return [encrypt, decrypt];
 };
