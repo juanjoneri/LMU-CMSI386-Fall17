@@ -8,12 +8,12 @@ exports.change = function (cents) {
   let remCents = cents;
   if (remCents < 0) { throw new RangeError(); }
 
-  let ans = [0, 0, 0, 0];
+  const ans = [0, 0, 0, 0];
 
   let i = 0;
-  [25, 10, 5, 1].forEach(function (coin) {
+  [25, 10, 5, 1].forEach( (coin) => {
     ans[i] = Math.floor(remCents / coin);
-    remCents -= ans[i]*coin;
+    remCents -= ans[i] * coin;
     i += 1;
   });
   return ans;
@@ -37,16 +37,18 @@ exports.scramble = function (str) {
   const N_SWAPS = Math.floor(Math.random() * MAX_N_SWAPS);
   const STR_LEN = str.length;
 
+  let scrambled = str;
+
   for (let i = 0; i < N_SWAPS; i += 1) {
     const pos1 = Math.floor(Math.random() * STR_LEN);
     const pos2 = Math.floor(Math.random() * STR_LEN);
-    let char1 = str[pos1];
-    let char2 = str[pos2];
-    str = str.replace(str[pos1], char2);
-    str = str.replace(str[pos2], char1);
+    const char1 = scrambled[pos1];
+    const char2 = scrambled[pos2];
+    scrambled = scrambled.replace(scrambled[pos1], char2);
+    scrambled = scrambled.replace(scrambled[pos2], char1);
   }
 
-  return str;
+  return scrambled;
 };
 
 /**
@@ -66,11 +68,11 @@ exports.powers = function (base, max, fun) {
  * A JavaScript generator function that yields successive powers of a
  * base starting at 1 and going up to some limit.
  */
-exports.powersGenerator = function*(base, max) {
+exports.powersGenerator = function* (base, max) {
   let [a, b] = [1, 1];
   while (b <= max) {
     a = b;
-    b = a*base;
+    b = a * base;
     yield a;
   }
 };
@@ -99,14 +101,14 @@ exports.say = function (str) {
  */
 exports.interleave = function (x, ...y) {
   let ans  = [];
-let min = Math.min(x.length, y.length);
-let max = Math.max(x.length, y.length);
+  let min = Math.min(x.length, y.length);
+  let max = Math.max(x.length, y.length);
 
-let [i, j] = [0, 0];
-while (i < min) {
-  ans[j++] = x[i];
-  ans[j++] = y[i];
-  i++;
+  let [i, j] = [0, 0];
+  while (i < min) {
+    ans[j++] = x[i];
+    ans[j++] = y[i];
+    i++;
 }
 
 while (i < max) {
