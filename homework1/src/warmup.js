@@ -113,14 +113,15 @@ exports.interleave = function (x, ...y) {
     ans[j] = y[i];
     j += 1;
     i += 1;
-}
+  }
 
-while (i < max) {
-  ans[j++] = x.length === max ? x[i] : y[i];
-  i++;
-}
+  while (i < max) {
+    ans[j] = x.length === max ? x[i] : y[i];
+    j += 1;
+    i += 1;
+  }
 
-return ans;
+  return ans;
 };
 
 /**
