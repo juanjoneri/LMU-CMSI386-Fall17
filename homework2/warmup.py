@@ -44,13 +44,16 @@ class Cylinder:
     def volume(self):
         "Returns the volume of the Cylinder"
         return math.pi * (self.radius ** 2) * self.height
-    def area(self):
+    @property
+    def surface_area(self):
         "Returns the surface area of the Cylinder"
         return (math.pi * self.radius * 2 * self.height) + (2 * math.pi * (self.radius ** 2))
+
     def widen(self, factor):
         "Increases the radius by the given factor"
         self.radius *= factor
         return self
+
     def stretch(self, factor):
         "Increases the radius by the given factor"
         self.height *= factor
