@@ -2,13 +2,13 @@ import math
 import re
 
 def change(cents):
+    #TODO maybe change to divmod
     if cents < 0:
         raise ValueError('amount cannot be negative')
     ans = [0] * 4
     i = 0;
     for coin in [25, 10, 5, 1]:
-        ans[i] = cents // coin
-        cents -= ans[i] * coin
+        [ans[i], cents] = divmod(cents, coin)
         i += 1
     return tuple(ans)
 
