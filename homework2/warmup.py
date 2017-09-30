@@ -12,8 +12,8 @@ def change(cents):
         i += 1
     return tuple(ans)
 
-def strip_quotes(str=''):
-    return re.sub(r'[\"\'\\]', '', str)
+def strip_quotes(str):
+    return re.sub(r'[\"\']', '', str)
 
 def scramble(str):
     str_list = list(str)
