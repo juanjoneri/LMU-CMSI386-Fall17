@@ -45,23 +45,16 @@ def powers(base, max):
         b = a * base
         yield a
 
-def interleave(x, **y):
-    if y == Nan:
-        return x
-    ans, i, j = [], 0, 0
-    minimum = min(len(x), len(y))
-    maximum = max(len(x), len(y))
-    while i < minimum:
-        ans[j] = y[j]
-        j += 1
-        ans[j] = y[i]
-        j += 1
-        i += 1
-    while i < maximum:
-        ans[j] = x[i] if len(x) == max else y[i]
-        j += 1
-        i += 1
-    return ans
+def interleave(x, *y):
+    intersection = [element for pair in zip(x, y) for element in pair]
+    leftover = len(x) - len(y)
+    if leftover == 0:
+        return intersection
+    elif leftover > 0:
+        # Use -leftover to access elements at the end of the list
+        return intersection + x[-leftover:]
+    else:
+        return intersection + list(y)[leftover:]
 
 class Cylinder:
     "A circle with a 2-D center point and a radius."
