@@ -36,7 +36,7 @@ def triples(hypothenuse):
               for b in range(1, c)
               for a in range(1, b)
               if a*a+b*b == c*c]
-    return sorted(values, key=lambda tup: tup[0])
+    return sorted(values, key=lambda triple:triple[0])
 
 def powers(base, max):
     a, b = 1, 1
