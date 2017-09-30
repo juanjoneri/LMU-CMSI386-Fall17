@@ -17,10 +17,10 @@ def test_change():
     assert str(excinfo.value) == 'amount cannot be negative'
 
 def test_strip_quotes():
-    assert strip_quotes('') == ''
     assert strip_quotes('Hello, world') == 'Hello, world'
     assert strip_quotes('"\'') == ''
     assert strip_quotes('a"""\'\'"z') == 'az'
+    assert strip_quotes('') == ''
 
 def test_scramble():
     for s in ['a', 'rat', 'JavaScript testing', '', 'zzz', '^*&^*&^▱ÄÈËɡɳɷ']:

@@ -20,9 +20,6 @@ def scramble(str):
     random.shuffle(str_list)
     return ''.join(str_list)
 
-def strip_quotes(str):
-    return 0
-
 def say():
     return 0
 
@@ -64,5 +61,4 @@ def make_crypto_functions():
     return 0
 
 def random_name(region=None, gender=None):
-
     return 0
