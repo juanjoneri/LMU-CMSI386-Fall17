@@ -5,12 +5,12 @@ import random
 def change(cents):
     if cents < 0:
         raise ValueError('amount cannot be negative')
-    ans = [0] * 4
-    i = 0
+    coin_count = []
+    remaning_cents = cents
     for coin in [25, 10, 5, 1]:
-        [ans[i], cents] = divmod(cents, coin)
-        i += 1
-    return tuple(ans)
+        coin_count.append(remaning_cents // coin)
+        remaning_cents = remaning_cents % coin
+    return tuple(coin_count)
 
 def strip_quotes(str):
     return re.sub(r'[\"\']', '', str)
