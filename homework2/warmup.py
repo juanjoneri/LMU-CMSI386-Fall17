@@ -23,8 +23,13 @@ def scramble(str):
 def say():
     return 0
 
-def triples(hyp):
-    return [(a, b, c) for c in range(1, hyp + 1) for b in range(1, c) for a in range(1, b) if a*a+b*b == c*c]
+def triples(hypothenuse):
+    values = [(a, b, c)
+              for c in range(1, hypothenuse + 1)
+              for b in range(1, c)
+              for a in range(1, b)
+              if a*a+b*b == c*c]
+    return sorted(values, key=lambda tup: tup[0])
 
 def powers(base, max):
     a, b = 1, 1
@@ -33,8 +38,23 @@ def powers(base, max):
         b = a * base
         yield a
 
-def interleave(a, *b):
-    return 0
+def interleave(x, **y):
+    if y == Nan:
+        return x
+    ans, i, j = [], 0, 0
+    minimum = min(len(x), len(y))
+    maximum = max(len(x), len(y))
+    while i < minimum:
+        ans[j] = y[j]
+        j += 1
+        ans[j] = y[i]
+        j += 1
+        i += 1
+    while i < maximum:
+        ans[j] = x[i] if len(x) == max else y[i]
+        j += 1
+        i += 1
+    return ans
 
 class Cylinder:
     "A circle with a 2-D center point and a radius."
