@@ -20,8 +20,15 @@ def scramble(str):
     random.shuffle(str_list)
     return ''.join(str_list)
 
-def say():
-    return 0
+def say(str=''):
+    phrase = str
+    def say_more(new_str=''):
+        nonlocal phrase
+        if new_str == '':
+            return phrase
+        phrase = phrase + ' ' + new_str
+        return say_more
+    return phrase if str == '' else say_more
 
 def triples(hyp):
     return [(a, b, c) for c in range(1, hyp + 1) for b in range(1, c) for a in range(1, b) if a*a+b*b == c*c]
