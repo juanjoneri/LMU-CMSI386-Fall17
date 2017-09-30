@@ -1,5 +1,6 @@
 import math
 import re
+import random
 
 def change(cents):
     if cents < 0:
@@ -14,8 +15,10 @@ def change(cents):
 def strip_quotes(str=''):
     return re.sub(r'[\"\'\\]', '', str)
 
-def scramble():
-    return s
+def scramble(str):
+    str_list = list(str)
+    random.shuffle(str_list)
+    return ''.join(str_list)
 
 def strip_quotes(str):
     return 0
