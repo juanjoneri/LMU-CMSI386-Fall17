@@ -26,9 +26,12 @@ def say():
 def triples(hyp):
     return [(a, b, c) for c in range(1, hyp + 1) for b in range(1, c) for a in range(1, b) if a*a+b*b == c*c]
 
-def powers(base, value):
-    'use yield'
-    return 0
+def powers(base, max):
+    a, b = 1, 1
+    while b <= max:
+        a = b
+        b = a * base
+        yield a
 
 def interleave(a, *b):
     return 0
