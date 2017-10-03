@@ -42,6 +42,7 @@ def triples(hypothenuse):
               for b in range(1, c)
               for a in range(1, b)
               if a*a+b*b == c*c]
+    #Sort by the first element to meet problem constraints
     return sorted(values, key=lambda triple: triple[0])
 
 
@@ -66,34 +67,29 @@ def interleave(x, *y):
 
 
 class Cylinder:
-    "A circle with a 2-D center point and a radius."
     def __init__(self, radius=1, height=1):
         self.height = height
         self.radius = radius
 
     @property
     def volume(self):
-        "Returns the volume of the Cylinder"
         return math.pi * (self.radius ** 2) * self.height
 
     @property
     def surface_area(self):
-        "Returns the surface area of the Cylinder"
-        return (math.pi * self.radius * 2 * self.height) + /
+        return (math.pi * self.radius * 2 * self.height) + \
         (2 * math.pi * (self.radius ** 2))
 
     def widen(self, factor):
-        "Increases the radius by the given factor"
         self.radius *= factor
         return self
 
     def stretch(self, factor):
-        "Increases the radius by the given factor"
         self.height *= factor
         return self
 
 
-def make_crypto_functions():
+def make_crypto_functions(key, vector):
     return 0
 
 
