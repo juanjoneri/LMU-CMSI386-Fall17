@@ -1,6 +1,8 @@
 import math
 import re
 import random
+import Crypto
+from Crypto.Cipher import AES
 
 
 def change(cents):
@@ -89,8 +91,16 @@ class Cylinder:
         return self
 
 
-def make_crypto_functions(key, vector):
-    return 0
+def make_crypto_functions(key, iv):
+    def encrypts(bytes):
+        cipher = AES.new(key, AES.MODE_CBC, iv)
+        return cipher.encrypt(bytes)
+
+    def decrypts(bytes):
+        cipher = AES.new(key, AES.MODE_CBC, iv)
+        return cipher.decrypt(bytes)
+
+    return tuple([encrypts, decrypts])
 
 
 def random_name(region=None, gender=None):
