@@ -102,4 +102,4 @@ def test_random_name():
     assert ', ' in p
     with pytest.raises(ValueError) as excinfo:
         random_name(gender='fjweiuw', region='canada')
-    assert '{"error":"Invalid gender"}' in str(excinfo.value)
+    assert "{'error': 'Invalid gender'}" in str(excinfo.value)

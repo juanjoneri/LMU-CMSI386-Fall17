@@ -108,7 +108,6 @@ def random_name(gender=None, region=None):
     url = 'https://uinames.com/api/'
     kwargs = {'gender': gender, 'region': region, 'amount': '1'}
     response = requests.get(url, params=kwargs).json()
-    if response.get('error') != None:
-        raise ValueError(str(response))
-    else:
+    if response.get('error') == None:
         return '{}, {}'.format(response.get('surname'), response.get('name'))
+    raise ValueError(str(response))
