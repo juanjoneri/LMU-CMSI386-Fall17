@@ -3,6 +3,7 @@ import re
 import random
 import Crypto
 from Crypto.Cipher import AES
+import requests
 
 
 def change(cents):
@@ -103,5 +104,11 @@ def make_crypto_functions(key, iv):
     return tuple([encrypts, decrypts])
 
 
-def random_name(region=None, gender=None):
-    return 0
+def random_name(gender=None, region=None):
+    url = 'https://uinames.com/api/'
+    kwargs = {'gender': gender, 'region': region, 'amount': '1'}
+    response = requests.get(url, params=kwargs).json()
+    if response.get('error') != None:
+        raise ValueError(str(response))
+    else:
+        return '{}, {}'.format(response.get('surname'), response.get('name'))
