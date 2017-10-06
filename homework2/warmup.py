@@ -59,15 +59,14 @@ def powers(base, max):
 
 def interleave(left, *right):
     # interleave the intersection of x and y
-    intersection = [element for pair in zip(left, right) for element in pair]
+    zipper = [element for pair in zip(left, right) for element in pair]
     # Find out how many elements were missed
     leftover = len(left) - len(right)
-    if leftover == 0:
-        return intersection
-    elif leftover > 0:
-        return intersection + left[-leftover:]
-    else:
-        return intersection + list(right)[leftover:]
+    if leftover > 0:
+        zipper += left[-leftover:]
+    elif leftover < 0:
+        zipper += list(right)[leftover:]
+    return zipper
 
 
 class Cylinder:
