@@ -92,13 +92,13 @@ class Cylinder:
         return self
 
 
-def make_crypto_functions(key, iv):
+def make_crypto_functions(key, initialization_vector):
     def encrypts(bytes):
-        cipher = AES.new(key, AES.MODE_CBC, iv)
+        cipher = AES.new(key, AES.MODE_CBC, initialization_vector)
         return cipher.encrypt(bytes)
 
     def decrypts(bytes):
-        cipher = AES.new(key, AES.MODE_CBC, iv)
+        cipher = AES.new(key, AES.MODE_CBC, initialization_vector)
         return cipher.decrypt(bytes)
 
     return tuple([encrypts, decrypts])
