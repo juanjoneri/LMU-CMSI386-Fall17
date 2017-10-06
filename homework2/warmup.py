@@ -45,7 +45,7 @@ def triples(hypothenuse):
               for b in range(1, c)
               for a in range(1, b)
               if a*a+b*b == c*c]
-    #Sort by the first element to meet problem constraints
+    # Sort by the first element to meet problem constraints
     return sorted(values, key=lambda triple: triple[0])
 
 
@@ -81,7 +81,7 @@ class Cylinder:
     @property
     def surface_area(self):
         return (math.pi * self.radius * 2 * self.height) + \
-        (2 * math.pi * (self.radius ** 2))
+         (2 * math.pi * (self.radius ** 2))
 
     def widen(self, factor):
         self.radius *= factor
@@ -108,6 +108,6 @@ def random_name(gender=None, region=None):
     url = 'https://uinames.com/api/'
     kwargs = {'gender': gender, 'region': region, 'amount': '1'}
     response = requests.get(url, params=kwargs).json()
-    if response.get('error') == None:
+    if response.get('error') is None:
         return '{}, {}'.format(response.get('surname'), response.get('name'))
     raise ValueError(str(response))
