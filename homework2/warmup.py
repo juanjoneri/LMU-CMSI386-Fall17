@@ -50,11 +50,11 @@ def triples(hypothenuse):
 
 
 def powers(base, max):
-    a, b = 1, 1
-    while b <= max:
-        a = b
-        b = a * base
-        yield a
+    current_power, next_power = 1, 1
+    while next_power <= max:
+        current_power = next_power
+        next_power = current_power * base
+        yield current_power
 
 
 def interleave(x, *y):
