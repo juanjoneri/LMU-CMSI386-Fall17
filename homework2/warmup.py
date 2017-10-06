@@ -57,16 +57,17 @@ def powers(base, max):
         yield current_power
 
 
-def interleave(x, *y):
-    intersection = [element for pair in zip(x, y) for element in pair]
-    leftover = len(x) - len(y)
+def interleave(left, *right):
+    # interleave the intersection of x and y
+    intersection = [element for pair in zip(left, right) for element in pair]
+    # Find out how many elements were missed
+    leftover = len(left) - len(right)
     if leftover == 0:
         return intersection
     elif leftover > 0:
-        # Use -leftover to access elements at the end of the list
-        return intersection + x[-leftover:]
+        return intersection + left[-leftover:]
     else:
-        return intersection + list(y)[leftover:]
+        return intersection + list(right)[leftover:]
 
 
 class Cylinder:
