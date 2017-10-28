@@ -65,14 +65,39 @@
    #include <iostream>
    int x = 2;
    void f() { std::cout << x << '\n'; }
-   void g() { int x = 5; f(); std::cout << x << '\n'; }
+   void g() { 
+     int x = 5; 
+     f(); 
+     std::cout << x << '\n'; }
    int main() {
      g();
      std::cout << x << '\n';
    }
    ```
 
+   ##### Output:
+
+   ```sh
+   2
+   5
+   2
+   ```
+
    Verify that the answer you obtained is the same that would be inferred from apply the rules of static scoping. If C++ used dynamic scoping, what would the output have been?
+
+   ##### Statically Scoped
+
+   A *block* defines a new scope. Variables can be declared in that scope, and aren't visible from the outside. However, variables outside the scope -- in enclosing scopes -- are visible unless they are overridden.
+
+   ##### Dynamically Scoped
+
+   We first look for a local definition of a variable. If it isn't found, we look up the calling stack for a definition. The output would be:
+
+   ```sh
+   5
+   5
+   2
+   ```
 
 6. Suppose you were asked to write a function to scramble (shuffle) a given array, in a mutable fashion. Give the function signature for a shuffle function for (a) a raw array, and (b) a std::array.
 
