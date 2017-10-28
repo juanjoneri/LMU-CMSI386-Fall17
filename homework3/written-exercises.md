@@ -4,12 +4,25 @@
 
    ```c++
    struct {
-     int n;
-     char c;
+     int n;   // 4bytes -> 4 x 8 bits
+     char c;  // 1byte  -> 8 bits
    } A[10][10];
    ```
 
    On your machine, find the address of `A[0][0]`  and `A[3][7]` . Explain why these values are what you found them to be.
+
+   output:
+
+   ```sh
+   0x1043040a0
+   0x1043041c8
+   ```
+
+   These values correspond to 4365238432 and 4365238728 in decimal respectively, which are separated by 296 bits.
+
+   (3 * 10  + 7) * 8 = 296.
+
+   Each entry in the array represents an 8 bit pointer to the location of a struct. To access the location of the pointer in the 3,7 location, because c++ stores the elements of an array sequentially, this is equivalent to the array location 3*10+7 passed the first entry at A\[0][0] corresponding to memory address  (3 * 10  + 7) * 8 + A\[0][0].
 
 2. (5 pts) Explain the meaning of the following C++ declarations:
 
