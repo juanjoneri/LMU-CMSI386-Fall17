@@ -27,11 +27,15 @@
 2. (5 pts) Explain the meaning of the following C++ declarations:
 
    ```c++
-   double *a[n];
-   double (*b)[n];
-   double (*c[n])();
-   double (*d())[n];
+   double *a[n]; //1
+   double (*b)[n]; //2
+   double (*c[n])(); //3
+   double (*d())[n]; //4
    ```
+   1. An array of n pointers to memory locations storing doubles
+   2. A pointer to an array containing n doubles
+   3. An array containing n pointers to memory locations storying functions with return type double
+   4. A function that returns a pointer to an array containing n doubles
 
 3. Consider the following declaration in C++:
 
