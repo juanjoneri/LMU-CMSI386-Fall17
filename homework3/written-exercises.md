@@ -45,6 +45,10 @@
 
    Describe rigorously, in English, the type of f.
 
+   `f` is a function that returns a pointer to `double (double, ...)`, which is a function that takes a `double` followed by `varargs` and returns a `double`.
+
+   The parameters of `f` are `(double (*) (double, double[]), double)`, a pointer to a function that takes a `double` and an array `double[]` and returns `double` as the first argument, and a `double` as the second argument.
+
 4. What happens when we “redefine” a field in a C++ subclass? For example, suppose we have:
 
    ```c++
