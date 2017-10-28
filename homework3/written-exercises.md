@@ -112,10 +112,14 @@
 6. Suppose you were asked to write a function to scramble (shuffle) a given array, in a mutable fashion. Give the function signature for a shuffle function for (a) a raw array, and (b) a std::array.
 
    ```c++
-   void shuffle (int& arr[]) { ...
+   void shuffle (int& arr[]) { 
+    ...
+   }
 
    template<std::size_t SIZE>
-   void shuffle(std::array<int, SIZE>& arr) { ...
+   void shuffle(std::array<int, SIZE>& arr) { 
+   ...
+   }
    ```
 
    ​
