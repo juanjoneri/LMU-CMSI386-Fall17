@@ -14,18 +14,18 @@ void insert(unordered_map<string, int> &map1, string word) {
 
 int main(int argc, char** argv) {
     char letter;
-    string str;
+    string word;
     unordered_map<string, int> theOriginalMap;
 
 
     while (cin.get(letter)) {
         if (isspace(letter) || letter == ',' || letter == '.') {
-            if (str.length() != 0) {
-                insert(theOriginalMap, str);
+            if (word.length() != 0) {
+                insert(theOriginalMap, word);
             }
-            str = "";
+            word = "";
         } else if (isalpha(letter)) {
-            str += tolower(letter);
+            word += tolower(letter);
         }
     }
 
