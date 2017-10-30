@@ -6,15 +6,14 @@ using namespace std;
 
 class Say {
     string phrase;
-    string first_word;
 
     public:
-        Say(string first_word=""): phrase(first_word), first_word(first_word) {}
+        Say(string first_word = ""): phrase(first_word) {}
         auto operator()(string new_word) {
-            if (phrase != "") phrase += ' ';
-            phrase += new_word;
-            Say say_more(phrase);
-            phrase = first_word; // reset the original for future use
+            string longer_phrase = phrase;
+            if (phrase != "") longer_phrase += ' ';
+            longer_phrase += new_word;
+            Say say_more(longer_phrase);
             return say_more;
         }
         auto operator()() {
@@ -24,8 +23,13 @@ class Say {
 };
 
 int main() {
-  Say say; // Say say("first_word")
-  assert(say("hi")() == "hi");
-  assert(say("hi")("there")() == "hi there");
-  assert(say("hello")("my")("name")("is")("Colette")() == "hello my name is Colette");
+    Say say; // Say say("first_word")
+    assert(say() == "");
+    assert(say("hi")() == "hi");
+    assert(say("hi")("there")() == "hi there");
+    assert(say("hello")("my")("name")("is")("Colette")() == "hello my name is Colette");
+
+    // cout << say("hello")() << '\n';
+    // cout << say("hello")("my")("friend")() << '\n';
+    // cout << say("hello")("my")("name")("is")("Colette")() << '\n';
 }
