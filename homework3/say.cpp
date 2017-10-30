@@ -8,14 +8,14 @@ class Say {
     string phrase;
 
     public:
-        Say(string first_word): phrase(first_word = "") {}
+        Say(string first_word): phrase(first_word) {}
         auto operator()(string new_word) {
             phrase += new_word;
-            cout << phrase << endl;
-            Say say(phrase);
-            return say;
+            Say say_more(phrase);
+            return say_more;
         }
         auto operator()() {
+            cout << "end" << endl;
             return phrase;
         }
 };
