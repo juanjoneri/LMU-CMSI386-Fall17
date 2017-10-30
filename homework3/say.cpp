@@ -10,7 +10,7 @@ class Say {
     public:
         Say(string first_word=""): phrase(first_word) {}
         auto operator()(string new_word) {
-            phrase += ' ';
+            if (phrase != "") phrase += ' ';
             phrase += new_word;
             Say say_more(phrase);
             return say_more;
@@ -22,7 +22,7 @@ class Say {
 };
 
 int main() {
-  Say say;
+  Say say; // Say say("first_word")
   cout << say("hi")("there")() << endl;
 
   // assert(say('hi')() == 'hi');
