@@ -8,6 +8,7 @@
 using namespace std;
 
 // Inserts a new word in a map, to keep track of the occurences of that word
+// <key = word, value = word_count>
 void insert(map<string, int> &destination_map, string word) {
     if (destination_map.find(word) != destination_map.end()) {
         destination_map[word]++;
@@ -16,17 +17,19 @@ void insert(map<string, int> &destination_map, string word) {
     }
 }
 
+// returns a new pair with the values of p swaped
 template<typename A, typename B>
 pair<B,A> flip_pair(const pair<A,B> &p) {
     return pair<B,A>(p.second, p.first);
 }
 
+// returns a new map destination_map with the key, values pairs of source_map swaped
 template<typename A, typename B>
-multimap<B,A> flip_map(const map<A,B> &src) {
-    multimap<B,A> dst;
-    transform(src.begin(), src.end(), inserter(dst, dst.begin()),
+multimap<B,A> flip_map(const map<A,B> &source_map) {
+    multimap<B,A> destination_map;
+    transform(source_map.begin(), source_map.end(), inserter(destination_map, destination_map.begin()),
     flip_pair<A,B>);
-    return dst;
+    return destination_map;
 }
 
 int main(int argc, char** argv) {
@@ -44,14 +47,16 @@ int main(int argc, char** argv) {
         } else if (isalpha(letter)) {
             word += tolower(letter);
         } else {
-            // In the case that the character is a nuber or other symbol, we just ignore it
+            // If character is a nuber or other symbol, we just ignore it
         }
     }
 
 
-    multimap<int, string> dst = flip_map(word_record);
+    // copy contents of the map into new map in reverse
+    // since map sorts by key (occurences)
+    multimap<int, string> ordered_records = flip_map(word_record);
 
-    for (auto& record: dst) {
+    for (auto& record: ordered_records) {
         cout << record.second << " " << record.first << endl;
     }
 
