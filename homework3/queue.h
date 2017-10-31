@@ -45,6 +45,7 @@ public:
 };
 
 ostream &operator<<(ostream& strm, const Queue& obj) {
-    strm << 3 << endl;
+    // behaves like a peek
+    strm << (*obj.head).data << endl;
     return strm;
 }
