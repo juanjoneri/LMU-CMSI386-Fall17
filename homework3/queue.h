@@ -11,36 +11,40 @@
  * - get_size
  * Make sure queues can be written to ostreams with the << operator. Throw the standard exception underflow_error when trying to dequeue from an empty queue
  */
+using namespace std;
 
- class Queue {
- public:
-     // Member variables can be given default values in this manner.
-     double x = 0;
-     double y = 0;
+class Queue {
 
-     // Define a default constructor which does nothing
-     // but initialize the Queue to the default value (0, 0)
-     Queue() { };
+private:
+    class Node {
+        public:
+            int data;
+            Node* next;
+            Node* prev;
 
-     // The following syntax is known as an initialization list
-     // and is the proper way to initialize class member values
-     Queue (double a, double b) :
-         x(a),
-         y(b)
-     { /* Do nothing except initialize the values */ }
+            Node(int data) : data(data) { };
+    };
+public:
+    Node* head;
+    Node* tail;
 
-     // Overload the + operator.
-     Queue operator+(const Queue& rhs) const;
+    Queue() { };
 
-     // Overload the += operator
-     Queue& operator+=(const Queue& rhs);
+    Queue (int initial) : head(NULL), tail(NULL) {
+        Node initial_node(initial);
+        head = &initial_node;
+        tail = &initial_node;
+    }
 
-     // It would also make sense to add the - and -= operators,
-     // but we will skip those for brevity.
- };
+    void enqueue(int data);
+    void dequeue();
+    int get_size();
 
-Queue Queue::operator+(const Queue& rhs) const
-{
-    // Create a new Queue that is the sum of this one and rhs.
-    return Queue(x + rhs.x, y + rhs.y);
+    friend ostream &operator<<(ostream&, const Queue&);
+
+};
+
+ostream &operator<<(ostream& strm, const Queue& obj) {
+    strm << 3 << endl;
+    return strm;
 }
