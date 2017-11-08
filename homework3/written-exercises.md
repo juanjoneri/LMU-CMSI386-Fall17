@@ -58,7 +58,7 @@
      std::string b;
    };
 
-   class Derived: Base {
+   class Derived: public Base {
    public:
      float c;
      int b;
