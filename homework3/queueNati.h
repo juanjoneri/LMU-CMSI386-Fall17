@@ -32,14 +32,14 @@ public:
     Queue(const Queue& q)= delete;
     Queue& operator=(const Queue& q)= delete;
 
-    Queue(Queue&& s): size(q.size), top(q.top), tail(q.tail) {
+    Queue(Queue&& q): size(q.size), top(q.top), tail(q.tail) {
         q.top = nullptr;
         q.size = 0;
         q.tail = nullptr;
     }
 
     Queue& operator=(Queue&& q){
-        if (&q != thiq){
+        if (&q != this){
             size = q.size;
             top = q.top;
             tail = q.tail;
