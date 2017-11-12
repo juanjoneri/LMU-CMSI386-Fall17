@@ -95,6 +95,12 @@ public:
     }
 };
 
+Queue<int> one_two_three() {
+  Queue<int> q;
+  for (int i = 1; i <= 3; i++) q.enqueue(i);
+  return q;
+}
+
 int main() {
 
     // DRAWING
