@@ -1,52 +1,127 @@
-/*
- * Write, in the file queue.h, an implementation of a generic singly-linked queue (template) class, implemented using nodes and   *pointers.
- * The queue object should have three fields:
- *  (1) a pointer to the head node
- *  (2) a pointer to the tail node
- *  (3) the current size of the queue (its number of elements).
- * You may use smart pointers or raw pointers (whichever you would enjoy practicing with more). Support move semantics but   prohibit copying.
- * Expose public methods
- * - enqueue
- * - dequeue
- * - get_size
- * Make sure queues can be written to ostreams with the << operator. Throw the standard exception underflow_error when trying to dequeue from an empty queue
- */
+#include <cassert>
+#include <iostream>
+
 using namespace std;
 
+template <typename T>
 class Queue {
 
-private:
-    class Node {
-        public:
-            int data;
-            Node* next;
-            Node* prev;
-
-            Node(int data) : data(data) { };
+    struct Node {
+        T data;
+        Node* next;
     };
 
-public:
-    Node* head;
-    Node* tail;
+    int size = 0;
+    Node* top = nullptr;
+    Node* tail = nullptr;
 
-    Queue() { };
-
-    Queue (int initial) : head(NULL), tail(NULL) {
-        Node initial_node(initial);
-        head = &initial_node;
-        tail = &initial_node;
+    Node* copy(Node* n) {
+        return new Node {n->data, n->next ? copy(n->next) : nullptr};
     }
 
-    void enqueue(int data);
-    void dequeue();
-    int get_size();
+public:
 
-    friend ostream &operator<<(ostream&, const Queue&);
+    ~Queue() {
+        while (top != nullptr) {
+            pop();
+        }
+    }
 
+    Queue() = default;
+
+    Queue(const Queue& q)= delete;
+    Queue& operator=(const Queue& q)= delete;
+
+    Queue(Queue&& q): size(q.size), top(q.top), tail(q.tail) {
+        q.top = nullptr;
+        q.size = 0;
+        q.tail = nullptr;
+    }
+
+    Queue& operator=(Queue&& q){
+        if (&q != this){
+            size = q.size;
+            top = q.top;
+            tail = q.tail;
+            q.tail = nullptr;
+            q.top = nullptr;
+            q.size = 0;
+        }
+        return *this;
+    }
+
+    int get_size() {
+        return size;
+    }
+
+    T get_top() {
+        return top->data;
+    }
+
+    T get_tail() {
+        return tail->data;
+    }
+
+    void push(T x) {
+        tail = new Node {x, tail};
+        if (size == 0) {
+            top = tail;
+        }
+        size++;
+    }
+
+    T pop() {
+        Node* nodeToDelete = top;
+        T valueToReturn = top->data;
+        top = top->next;
+        size--;
+        if (size == 1){
+            Node* nodeToDeleteTail = tail;
+            delete nodeToDeleteTail;
+        }
+        delete nodeToDelete;
+        return valueToReturn;
+    }
 };
 
-ostream &operator<<(ostream& strm, const Queue& obj) {
-    // behaves like a peek
-    strm << (*obj.head).data << endl;
-    return strm;
+Queue<int> oneTwoThree() {
+    Queue<int> z;
+    z.push(3);
+    z.push(2);
+    z.push(1);
+    return z;
+}
+
+int main() {
+    Queue<int> q;
+    assert(q.get_size() == 0);
+    q.push(100);
+    assert(q.get_top() == 100);
+    assert(q.get_size() == 1);
+    q.push(200);
+    assert(q.get_top() == 100);
+    assert(q.get_tail() == 200);
+    assert(q.get_size() == 2);
+    assert(q.pop() == 100);
+    assert(q.get_size() == 1);
+    q.push(200);
+    q.push(300);
+    q.push(400);
+    q.push(500);
+
+
+    cout << q.get_tail() << '\n' ;
+    cout << q.get_top() << '\n' ;
+    //  cout << q.pop() << '\n' ;
+    //assert(q.pop() == 200);
+    // assert(q.get_size() == 0);
+    //q.push(300);
+    //  q.push(400);
+
+    // Queue<int> t = oneTwoThree();
+
+    // t = oneTwoThree();
+
+    // q.pop();
+    cout << "All testq passed\n";
 }
