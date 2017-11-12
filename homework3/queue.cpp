@@ -83,6 +83,7 @@ public:
     }
 
     T dequeue() {
+        if (size == 0) throw std::underflow_error("This q is empty dude.");
         Node* nodeToDelete = head;
         T valueToReturn = head->data;
         head = head->next;
@@ -124,6 +125,16 @@ int main() {
 
     assert(q.dequeue() == 200);
     assert(q.get_size() == 0);
+
+    try {
+      q.dequeue();
+      assert(false);
+    } catch (const underflow_error& ue) {
+      assert(true);
+    } catch (...) {
+      // Caught the wrong exception
+      assert(false);
+    }
 
 
     cout << "All tests passed\n";
