@@ -24,6 +24,7 @@ private:
 
             Node(int data) : data(data) { };
     };
+
 public:
     Node* head;
     Node* tail;
