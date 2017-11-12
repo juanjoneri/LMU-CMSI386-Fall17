@@ -58,7 +58,7 @@
      std::string b;
    };
 
-   class Derived: Base {
+   class Derived: public Base {
    public:
      float c;
      int b;
@@ -67,7 +67,7 @@
 
    Does the representation of a Derived object contain one b field or two? If two, are both accessible, or only one? Under what circumstances? Tell the story of how things are.
 
-   The derived object has one `b` field of type `int`, however it has access to its parents `b` field trough the syntax `Parent::field`, in this case `Base::b` . This is possible in this case because Baes's b field is public.
+   The derived object has one `b` field of type `int`, however it has access to its parents `b` field trough the syntax `Parent::field`, in this case `Base::b` . This is possible in this case because Base's b field is public.
 
 5. What does the following C++ program output?
 
