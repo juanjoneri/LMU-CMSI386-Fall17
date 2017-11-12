@@ -47,10 +47,10 @@ public:
 
     Queue& operator=(Queue&& q) {
       if (&q != this) {
-        this.size = q.size;
-        this.top = q.top;
-        this.tail = q.tail;
-        q.top = nullptr;
+        size = q.size;
+        head = q.head;
+        tail = q.tail;
+        q.head = nullptr;
         q.tail = nullptr;
         q.size = 0;
       }
