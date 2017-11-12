@@ -103,7 +103,7 @@ def make_crypto_functions(key, initialization_vector):
     return tuple([encrypts, decrypts])
 
 
-def random_name(gender=None, region=None):
+def random_name(gender, region):
     url = 'https://uinames.com/api/'
     kwargs = {'gender': gender, 'region': region, 'amount': '1'}
     response = requests.get(url, params=kwargs).json()
