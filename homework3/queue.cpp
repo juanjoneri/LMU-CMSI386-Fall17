@@ -20,7 +20,7 @@ class Queue {
 
     int size = 0;
     Node* head = nullptr; //first item added (to remove)
-    Node* tail = nullptr; //last item added (last to remove)
+    Node* tail = nullptr; //last item added  (last to remove)
 
     Node* copy(Node* n) {
         return new Node {n->data, n->next ? copy(n->next) : nullptr};
@@ -29,7 +29,7 @@ class Queue {
 public:
 
     ~Queue() {
-        while (head != nullptr) {
+        while (size != 0) {
             dequeue();
         }
     }
@@ -45,6 +45,7 @@ public:
         q.size = 0;
     }
 
+    // move operator when source is and r-value
     Queue& operator=(Queue&& q) {
       if (&q != this) {
         size = q.size;
@@ -90,7 +91,7 @@ public:
         size--;
 
         delete nodeToDelete;
-        if (size == 0) delete tail;
+        if (size == 0) tail = nullptr;
         return valueToReturn;
     }
 };
@@ -141,6 +142,23 @@ int main() {
       // Caught the wrong exception
       assert(false);
     }
+
+    // Construction via a function return call is a move
+    Queue<int> p;
+    assert(p.get_size() == 0);
+    p.enqueue(100);
+    assert(p.get_head() == 100);
+    assert(p.get_tail() == 100);
+    assert(p.get_size() == 1);
+
+    p.enqueue(200);
+    assert(p.get_head() == 100);
+    assert(p.get_tail() == 200);
+    assert(p.get_size() == 2);
+
+    Queue<int> t = one_two_three();
+
+    t = one_two_three();
 
 
     cout << "All tests passed\n";
