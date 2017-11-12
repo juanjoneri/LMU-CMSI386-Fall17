@@ -30,7 +30,7 @@ public:
 
     ~Queue() {
         while (head != nullptr) {
-            pop();
+            dequeue();
         }
     }
 
@@ -69,7 +69,7 @@ public:
         return tail->data;
     }
 
-    void push(T x) {
+    void enqueue(T x) {
         Node* newTail = new Node {x, nullptr};
         if (size == 0) {
             tail = newTail;
@@ -82,7 +82,7 @@ public:
 
     }
 
-    T pop() {
+    T dequeue() {
         Node* nodeToDelete = head;
         T valueToReturn = head->data;
         head = head->next;
@@ -99,30 +99,30 @@ int main() {
     // DRAWING
     /*
            Size = 4
-           Pop                    Push
+           dequeue                    enqueue
           [Head] -> [] -> [] -> [Tail] -> new elements...
     */
 
     Queue<int> q;
     assert(q.get_size() == 0);
 
-    q.push(100);
+    q.enqueue(100);
     assert(q.get_head() == 100);
     assert(q.get_tail() == 100);
     assert(q.get_size() == 1);
     //
-    q.push(200);
+    q.enqueue(200);
     assert(q.get_head() == 100);
     assert(q.get_tail() == 200);
     assert(q.get_size() == 2);
     //
-    assert(q.pop() == 100);
+    assert(q.dequeue() == 100);
 
     assert(q.get_head() == 200);
     assert(q.get_tail() == 200);
     assert(q.get_size() == 1);
-    
-    assert(q.pop() == 200);
+
+    assert(q.dequeue() == 200);
     assert(q.get_size() == 0);
 
 
