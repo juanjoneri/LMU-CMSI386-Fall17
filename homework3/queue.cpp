@@ -87,11 +87,9 @@ public:
         T valueToReturn = head->data;
         head = head->next;
         size--;
-        if (size == 1){
-            Node* nodeToDeleteTail = tail;
-            delete nodeToDeleteTail;
-        }
+
         delete nodeToDelete;
+        if (size == 0) delete tail;
         return valueToReturn;
     }
 };
@@ -118,14 +116,14 @@ int main() {
     assert(q.get_tail() == 200);
     assert(q.get_size() == 2);
     //
-    // assert(q.pop() == 100);
-    //
-    // assert(q.get_head() == 200);
-    // assert(q.get_tail() == 200);
-    // assert(q.get_size() == 1);
-    //
-    // assert(q.pop() == 200);
-    // assert(q.get_size() == 0);
+    assert(q.pop() == 100);
+
+    assert(q.get_head() == 200);
+    assert(q.get_tail() == 200);
+    assert(q.get_size() == 1);
+    
+    assert(q.pop() == 200);
+    assert(q.get_size() == 0);
 
 
     cout << "All tests passed\n";
