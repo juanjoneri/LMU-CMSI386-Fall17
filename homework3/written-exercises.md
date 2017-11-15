@@ -22,7 +22,7 @@
 
    $(3 * 10  + 7) * 8 = 296$.
 
-   Each entry in the array takes up 8 bytes. Even though a struct that takes up 5 bytes is stored in each position, data alignment means putting the data at a memory address equal to some multiple of the word size, which increases the system's performance due to the way the CPU handles memory. To access the location of the pointer in the 3,7 location, because c++ stores the elements of an array sequentially, this is equivalent to the array location $3*10+7$ passed the first entry at A\[0][0] corresponding to memory address  $(3 * 10  + 7) * 8 + A[0][0]$.
+   Each entry in the array takes up 8 bytes. Even though a struct that takes up 5 bytes is stored in each position, data alignment or *padding*, which increases the system's performance due to the way the CPU handles memory. struct-padding is done differently by different compilers. To access the location of the struct in the 3,7 location, because c++ stores the elements of an array sequentially, this is equivalent to the array location $3*10+7$ passed the first entry at A\[0][0] corresponding to memory address  $(3 * 10  + 7) * 8 + A[0][0]$.
 
 2. (5 pts) Explain the meaning of the following C++ declarations:
 

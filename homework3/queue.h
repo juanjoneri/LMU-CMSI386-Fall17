@@ -18,6 +18,7 @@ class Queue {
         Node* next;
     };
 
+<<<<<<< Updated upstream
     int size = 0;
     Node* head = nullptr; //first item added (to remove)
     Node* tail = nullptr; //last item added  (last to remove)
@@ -26,6 +27,8 @@ class Queue {
         return new Node {n->data, n->next ? copy(n->next) : nullptr};
     }
 
+=======
+>>>>>>> Stashed changes
 public:
 
     ~Queue() {
