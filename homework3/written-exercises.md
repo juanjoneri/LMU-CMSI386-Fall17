@@ -95,6 +95,8 @@
 
    Verify that the answer you obtained is the same that would be inferred from apply the rules of static scoping. If C++ used dynamic scoping, what would the output have been?
 
+   In general **Static** means before you run, **Dynamic** means while you run
+
    ##### Statically Scoped
 
    A *block* defines a new scope. Variables can be declared in that scope, and aren't visible from the outside. However, variables outside the scope -- in enclosing scopes -- are visible unless they are overridden.
