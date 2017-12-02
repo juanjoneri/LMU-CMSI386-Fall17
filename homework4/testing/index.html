@@ -8232,7 +8232,7 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 var _user$project$Main$viewValidation = function (model) {
-	var _p0 = _elm_lang$core$Native_Utils.eq(model.to, model.toAgain) ? {ctor: '_Tuple2', _0: 'green', _1: 'is days'} : {ctor: '_Tuple2', _0: 'red', _1: 'is days'};
+	var _p0 = _elm_lang$core$Native_Utils.eq(model.from, model.to) ? {ctor: '_Tuple2', _0: 'green', _1: 'is days'} : {ctor: '_Tuple2', _0: 'red', _1: 'is days'};
 	var color = _p0._0;
 	var message = _p0._1;
 	return A2(
@@ -8256,29 +8256,21 @@ var _user$project$Main$viewValidation = function (model) {
 var _user$project$Main$update = F2(
 	function (msg, model) {
 		var _p1 = msg;
-		switch (_p1.ctor) {
-			case 'From':
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{from: _p1._0});
-			case 'To':
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{to: _p1._0});
-			default:
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{toAgain: _p1._0});
+		if (_p1.ctor === 'From') {
+			return _elm_lang$core$Native_Utils.update(
+				model,
+				{from: _p1._0});
+		} else {
+			return _elm_lang$core$Native_Utils.update(
+				model,
+				{to: _p1._0});
 		}
 	});
-var _user$project$Main$Model = F3(
-	function (a, b, c) {
-		return {from: a, to: b, toAgain: c};
+var _user$project$Main$Model = F2(
+	function (a, b) {
+		return {from: a, to: b};
 	});
-var _user$project$Main$model = A3(_user$project$Main$Model, '', '', '');
-var _user$project$Main$ToAgain = function (a) {
-	return {ctor: 'ToAgain', _0: a};
-};
+var _user$project$Main$model = A2(_user$project$Main$Model, '', '');
 var _user$project$Main$To = function (a) {
 	return {ctor: 'To', _0: a};
 };
@@ -8327,27 +8319,8 @@ var _user$project$Main$view = function (model) {
 					{ctor: '[]'}),
 				_1: {
 					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$input,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$type_('to'),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$placeholder('Re-enter To'),
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$html$Html_Events$onInput(_user$project$Main$ToAgain),
-									_1: {ctor: '[]'}
-								}
-							}
-						},
-						{ctor: '[]'}),
-					_1: {
-						ctor: '::',
-						_0: _user$project$Main$viewValidation(model),
-						_1: {ctor: '[]'}
-					}
+					_0: _user$project$Main$viewValidation(model),
+					_1: {ctor: '[]'}
 				}
 			}
 		});

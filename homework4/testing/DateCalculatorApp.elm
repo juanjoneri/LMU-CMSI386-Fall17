@@ -13,22 +13,18 @@ main =
     , update = update
     }
 
-
-
 -- MODEL
 
 
 type alias Model =
   { from : String
   , to : String
-  , toAgain : String
   }
 
 
 model : Model
 model =
-  Model "" "" ""
-
+  Model "" ""
 
 
 -- UPDATE
@@ -37,8 +33,6 @@ model =
 type Msg
     = From String
     | To String
-    | ToAgain String
-
 
 update : Msg -> Model -> Model
 update msg model =
@@ -49,11 +43,6 @@ update msg model =
     To to ->
       { model | to = to }
 
-    ToAgain to ->
-      { model | toAgain = to }
-
-
-
 -- VIEW
 
 
@@ -62,7 +51,6 @@ view model =
   div []
     [ input [ type_ "text", placeholder "From", onInput From ] []
     , input [ type_ "to", placeholder "To", onInput To ] []
-    , input [ type_ "to", placeholder "Re-enter To", onInput ToAgain ] []
     , viewValidation model
     ]
 
@@ -71,7 +59,7 @@ viewValidation : Model -> Html msg
 viewValidation model =
   let
     (color, message) =
-      if model.to == model.toAgain then
+      if model.from == model.to then
         ("green", "is days")
       else
         ("red", "is days")
