@@ -9,19 +9,13 @@ coins =
 change amount =
     if amount > 0 then
         let
-            makeChange remainder q d n p =
+            makeChange q n d p remainder =
                 if remainder == 0 then
-                    Ok (q d n p)
-                else if remainder-25 >= 0 then
-                    makeChange (remainder-25) (q+1) d n p
-                else if remainder-10 >= 0 then
-                    makeChange (remainder-10) q (d+1) n p
-                else if remainder-5 >= 0 then
-                    makeChange (remainder-5) q d (n+1) p
+                    Ok (p)
                 else
-                    makeChange (remainder-1) q d n (p+1)
+                    makeChange q n d (p+1) (remainder-1)
         in
-            makeChange amount 0 0 0 0
+            makeChange 0 0 0 0 amount
     else
         Err "amount cannot be negative"
 

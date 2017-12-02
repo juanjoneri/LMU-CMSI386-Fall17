@@ -8378,22 +8378,28 @@ var _elm_lang$html$Html$menuitem = _elm_lang$html$Html$node('menuitem');
 var _elm_lang$html$Html$menu = _elm_lang$html$Html$node('menu');
 var _user$project$Main$change = function (amount) {
 	if (_elm_lang$core$Native_Utils.cmp(amount, 0) > 0) {
-		var c = F2(
-			function (remainder, dimes) {
-				c:
+		var makeChange = F5(
+			function (q, n, d, p, remainder) {
+				makeChange:
 				while (true) {
 					if (_elm_lang$core$Native_Utils.eq(remainder, 0)) {
-						return _elm_lang$core$Result$Ok(dimes);
+						return _elm_lang$core$Result$Ok(p);
 					} else {
-						var _v0 = remainder - 1,
-							_v1 = dimes + 1;
-						remainder = _v0;
-						dimes = _v1;
-						continue c;
+						var _v0 = q,
+							_v1 = n,
+							_v2 = d,
+							_v3 = p + 1,
+							_v4 = remainder - 1;
+						q = _v0;
+						n = _v1;
+						d = _v2;
+						p = _v3;
+						remainder = _v4;
+						continue makeChange;
 					}
 				}
 			});
-		return A2(c, amount, 0);
+		return A5(makeChange, 0, 0, 0, 0, amount);
 	} else {
 		return _elm_lang$core$Result$Err('amount cannot be negative');
 	}
