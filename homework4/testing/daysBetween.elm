@@ -9,7 +9,7 @@ millisecondsPerDay =
 
 daysBetween  d1 d2 =
     case (d1 |> fromString, d2 |> fromString) of
-        (Ok value1, Ok value2) -> Ok (((value1 |> toTime) - (value2 |> toTime)) / millisecondsPerDay)
+        (Ok value1, Ok value2) -> Ok (((value2 |> toTime) - (value1 |> toTime)) / millisecondsPerDay)
         (Err msg1, Ok value2) -> Err (d1 ++ " is not a date.")
         (Ok value1, Err msg2) -> Err (d2 ++ " is not a date.")
         (Err msg1, Err msg2) -> Err ("Neither " ++ d1 ++ " nor " ++ d2 ++ " are dates.")
