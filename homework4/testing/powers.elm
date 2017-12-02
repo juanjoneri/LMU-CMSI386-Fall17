@@ -11,10 +11,6 @@ powers base limit =
     in
         reverse (accumulate [base, 1])
 
-renderList lst =
-    ul []
-        (map (\l -> li [] [ text l ]) lst)
-
 main : Html Never
 main =
-      powers 2 12 |> map (toString >> text >> repeat 1 >> li []) |> ul []
+      powers 3 23143435 |> map (toString >> text >> repeat 1 >> li []) |> ul []

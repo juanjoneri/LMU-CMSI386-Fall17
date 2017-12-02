@@ -10,9 +10,3 @@ sumOfCubesOfOdds lista =
 
 main =
       sumOfCubesOfOdds [-3, 2, -8, 5, -1] |> toString |> text
-
-
-
--- \  |> filter odd
---    |> map square
---    |> sum
