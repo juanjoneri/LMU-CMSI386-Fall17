@@ -8383,19 +8383,62 @@ var _user$project$Main$change = function (amount) {
 				makeChange:
 				while (true) {
 					if (_elm_lang$core$Native_Utils.eq(remainder, 0)) {
-						return _elm_lang$core$Result$Ok(p);
+						return _elm_lang$core$Result$Ok(
+							{ctor: '_Tuple4', _0: q, _1: n, _2: d, _3: p});
 					} else {
-						var _v0 = q,
-							_v1 = n,
-							_v2 = d,
-							_v3 = p + 1,
-							_v4 = remainder - 1;
-						q = _v0;
-						n = _v1;
-						d = _v2;
-						p = _v3;
-						remainder = _v4;
-						continue makeChange;
+						if (_elm_lang$core$Native_Utils.cmp(remainder, 25) > -1) {
+							var _v0 = (remainder / 25) | 0,
+								_v1 = n,
+								_v2 = d,
+								_v3 = p,
+								_v4 = A2(_elm_lang$core$Basics_ops['%'], remainder, 25);
+							q = _v0;
+							n = _v1;
+							d = _v2;
+							p = _v3;
+							remainder = _v4;
+							continue makeChange;
+						} else {
+							if (_elm_lang$core$Native_Utils.cmp(remainder, 10) > -1) {
+								var _v5 = q,
+									_v6 = (remainder / 10) | 0,
+									_v7 = d,
+									_v8 = p,
+									_v9 = A2(_elm_lang$core$Basics_ops['%'], remainder, 10);
+								q = _v5;
+								n = _v6;
+								d = _v7;
+								p = _v8;
+								remainder = _v9;
+								continue makeChange;
+							} else {
+								if (_elm_lang$core$Native_Utils.cmp(remainder, 5) > -1) {
+									var _v10 = q,
+										_v11 = n,
+										_v12 = (remainder / 5) | 0,
+										_v13 = p,
+										_v14 = A2(_elm_lang$core$Basics_ops['%'], remainder, 5);
+									q = _v10;
+									n = _v11;
+									d = _v12;
+									p = _v13;
+									remainder = _v14;
+									continue makeChange;
+								} else {
+									var _v15 = q,
+										_v16 = n,
+										_v17 = d,
+										_v18 = p + 1,
+										_v19 = remainder - 1;
+									q = _v15;
+									n = _v16;
+									d = _v17;
+									p = _v18;
+									remainder = _v19;
+									continue makeChange;
+								}
+							}
+						}
 					}
 				}
 			});
