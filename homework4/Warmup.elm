@@ -4,7 +4,7 @@ import List exposing (concatMap, map, foldr)
 import List exposing (reverse, map, repeat)
 import Result exposing ( Result( Ok, Err ) )
 
-change : Int -> Int
+change : Int -> List Int
 change a =
     1
 
