@@ -11,4 +11,16 @@ new =
 
 volume: Cylinder -> Float
 volume {radius, height} =
-    height * pi * radius ^ 2
+    height * (pi * radius ^ 2)
+
+surface: Cylinder -> Float
+surface {radius, height} =
+    (pi * radius ^ 2) + ((pi * 2 * radius) * height)
+
+widen: Float -> Cylinder -> Cylinder
+widen factor cylinder =
+    { cylinder | radius = factor * cylinder.radius}
+
+stretch: Float -> Cylinder -> Cylinder
+stretch factor cylinder =
+    { cylinder | height = factor * cylinder.height}
