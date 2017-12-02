@@ -1,23 +1,15 @@
 import Html exposing (Html, ul, li, text)
 import List exposing (reverse, map, sum, filter)
-import Regex exposing (..)
-
-square x =
-    x * x
-
-odd x =
-    x % 2 == 0
 
 sumOfCubesOfOdds : List Int -> Int
 sumOfCubesOfOdds lista =
     lista
-        |> filter odd
-        |> map square
+        |> filter (\x -> x % 2 /= 0)
+        |> map (\x -> x ^ 3)
         |> sum
 
-
 main =
-      text (sumOfCubesOfOdds [1,2,3,4,5] |> toString )
+      sumOfCubesOfOdds [-3, 2, -8, 5, -1] |> toString |> text
 
 
 
