@@ -45,25 +45,34 @@ update msg model =
 
 -- VIEW
 
-
 view : Model -> Html Msg
 view model =
   div []
-    [ input [ type_ "text", placeholder "From", onInput From ] []
-    , input [ type_ "to", placeholder "To", onInput To ] []
-    , viewValidation model
+    [ h1 [] [text "Date Calculator"]
+    , p [] [text "From ", input [ type_ "date", placeholder "From", onInput From ] []]
+    , p []
+        [text "to "
+        , input [ type_ "date", placeholder "To", onInput To ] []
+        ]
+    , p [ titleStyle ]
+        [ text "is "
+        , viewValidation model
+        , text " days"
+        ]
     ]
 
+titleStyle =
+    style [("color", "blue")]
 
 viewValidation : Model -> Html msg
 viewValidation model =
   let
-    (color, message) =
+    distance =
       case daysBetween model.from model.to of
-          Ok d -> ("green", "is " ++ (d |> toString) ++ " days")
-          Err _ -> ("red", "is days")
+          Ok d -> (d |> toString)
+          Err _ -> ""
   in
-    div [ style [("color", color)] ] [ text message ]
+    div [] [ text distance ]
 
 
 
