@@ -48,13 +48,13 @@ update msg model =
 view : Model -> Html Msg
 view model =
   div []
-    [ h1 [] [text "Date Calculator"]
+    [ h1 [ titleStyle ] [text "Date Calculator"]
     , p [] [text "From ", input [ type_ "date", placeholder "From", onInput From ] []]
     , p []
         [text "to "
         , input [ type_ "date", placeholder "To", onInput To ] []
         ]
-    , p [ titleStyle ]
+    , p [ outStyle ]
         [ text "is "
         , viewValidation model
         , text " days"
@@ -62,7 +62,14 @@ view model =
     ]
 
 titleStyle =
-    style [("color", "blue")]
+    style
+        [ ("background-color", "cyan")
+        , ("font", "bold 40px Avenir")
+        , ("margin-top", "0")
+        , ("padding", "5px")]
+
+outStyle =
+    style [("color", "blue"), ("font", "40px")]
 
 viewValidation : Model -> Html msg
 viewValidation model =
