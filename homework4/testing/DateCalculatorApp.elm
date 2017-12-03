@@ -93,8 +93,7 @@ inputStyle =
         , ("margin-left", "8px") ]
 
 outputStyle =
-    style
-    [ ("font-size", "28px") ]
+    style [ ("font-size", "28px") ]
 
 viewValidation : Model -> Html msg
 viewValidation model =
@@ -104,7 +103,7 @@ viewValidation model =
           Ok d -> (d |> toString)
           Err _ -> ""
   in
-    div [] [ text distance ]
+    distance |> text
 
 
 
