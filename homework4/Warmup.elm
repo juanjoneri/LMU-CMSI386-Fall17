@@ -37,13 +37,16 @@ stripQuotes =
 
 --powers : Int -> Int -> List Int
 powers base limit =
+    if base < 0 then Err "negative base" else
+
     let accumulate pows =
         if limit < 1 then [] else
         case pows of
             x :: rest -> if base * x > limit then pows else accumulate (base * x::pows)
             _ -> []
     in
-        reverse (accumulate [base, 1])
+        Ok (reverse (accumulate [base, 1]))
+
 
 sumOfCubesOfOdds : List Int -> Int
 sumOfCubesOfOdds lista =
