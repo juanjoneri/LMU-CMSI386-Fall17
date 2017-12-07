@@ -35,7 +35,7 @@ stripQuotes : String -> String
 stripQuotes =
     replace All (regex "['\"]") (\_ -> "")
 
-powers : Int -> Int -> List Int
+--powers : Int -> Int -> List Int
 powers base limit =
     let accumulate pows =
         if limit < 1 then [] else

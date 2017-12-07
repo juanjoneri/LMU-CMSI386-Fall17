@@ -13,9 +13,9 @@ volume: Cylinder -> Float
 volume {radius, height} =
     height * (pi * radius ^ 2)
 
-surface: Cylinder -> Float
-surface {radius, height} =
-    (pi * radius ^ 2) + ((pi * 2 * radius) * height)
+surfaceArea: Cylinder -> Float
+surfaceArea {radius, height} =
+    2 * (pi * radius ^ 2) + ((pi * 2 * radius) * height)
 
 widen: Float -> Cylinder -> Cylinder
 widen factor cylinder =

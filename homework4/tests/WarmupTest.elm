@@ -3,7 +3,7 @@ module WarmupTest exposing (..)
 import Expect exposing (Expectation, FloatingPointTolerance(Absolute), within, equal)
 import Test exposing (..)
 import Warmup exposing (..)
---import Cylinder exposing (..)
+import Cylinder exposing (..)
 
 suite : Test
 suite =
@@ -34,21 +34,21 @@ suite =
             , test "works for single odd" <| \_ -> sumOfCubesOfOdds [3] |> equal 27
             , test "works for a mixed list" <| \_ -> sumOfCubesOfOdds [-3, 2, -8, 5, -1] |> equal 97
             ]
-        -- , describe "daysBetween function"
-        --     [ test "one day" <| \_ -> daysBetween "2017-01-01" "2016-12-31" |> equal (Ok -1)
-        --     , test "in leap year" <| \_ -> daysBetween "2016-03-01" "2016-02-27" |> equal (Ok -3)
-        --     , test "in leap year again" <| \_ -> daysBetween "2016-02-27" "2016-03-01" |> equal (Ok 3)
-        --     ]
-        -- , describe "cylinder type"
-        --     [ test "new cylinder" <| \_ ->
-        --         Cylinder.new |> equal { radius = 1.0, height = 1.0 }
-        --     , test "stretch" <| \_ ->
-        --         stretch 5 Cylinder.new |> equal { radius = 1.0, height = 5.0 }
-        --     , test "widen" <| \_ ->
-        --         widen 8 Cylinder.new |> equal { radius = 8.0, height = 1.0 }
-        --     , test "volume" <| \_ ->
-        --         volume { radius = 2.0, height = 10.0 } |> within (Absolute 0.000001) (40*pi)
-        --     , test "surfaceArea" <| \_ ->
-        --         surfaceArea { radius = 2.0, height = 10.0 } |> within (Absolute 0.000001) (48*pi)
-        --     ]
+        , describe "daysBetween function"
+            [ test "one day" <| \_ -> daysBetween "2017-01-01" "2016-12-31" |> equal (Ok -1)
+            , test "in leap year" <| \_ -> daysBetween "2016-03-01" "2016-02-27" |> equal (Ok -3)
+            , test "in leap year again" <| \_ -> daysBetween "2016-02-27" "2016-03-01" |> equal (Ok 3)
+            ]
+        , describe "cylinder type"
+            [ test "new cylinder" <| \_ ->
+                Cylinder.new |> equal { radius = 1.0, height = 1.0 }
+            , test "stretch" <| \_ ->
+                stretch 5 Cylinder.new |> equal { radius = 1.0, height = 5.0 }
+            , test "widen" <| \_ ->
+                widen 8 Cylinder.new |> equal { radius = 8.0, height = 1.0 }
+            , test "volume" <| \_ ->
+                volume { radius = 2.0, height = 10.0 } |> within (Absolute 0.000001) (40*pi)
+            , test "surfaceArea" <| \_ ->
+                surfaceArea { radius = 2.0, height = 10.0 } |> within (Absolute 0.000001) (48*pi)
+            ]
         ]
