@@ -5,6 +5,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onInput)
 import Date exposing (..)
+import Warmup exposing (daysBetween)
 
 main =
   Html.beginnerProgram
@@ -107,11 +108,11 @@ viewValidation model =
 
 
 
-millisecondsPerDay =
-    24 * 60 * 60 * 1000
-daysBetween  d1 d2 =
-    case (d1 |> fromString, d2 |> fromString) of
-        (Ok value1, Ok value2) -> Ok (((value2 |> toTime) - (value1 |> toTime)) / millisecondsPerDay)
-        (Err _, Ok _) -> Err (d1 ++ " is not a date.")
-        (Ok _, Err _) -> Err (d2 ++ " is not a date.")
-        (Err _, Err _) -> Err ("Neither " ++ d1 ++ " nor " ++ d2 ++ " are dates.")
+-- millisecondsPerDay =
+--     24 * 60 * 60 * 1000
+-- daysBetween  d1 d2 =
+--     case (d1 |> fromString, d2 |> fromString) of
+--         (Ok value1, Ok value2) -> Ok (((value2 |> toTime) - (value1 |> toTime)) / millisecondsPerDay)
+--         (Err _, Ok _) -> Err (d1 ++ " is not a date.")
+--         (Ok _, Err _) -> Err (d2 ++ " is not a date.")
+--         (Err _, Err _) -> Err ("Neither " ++ d1 ++ " nor " ++ d2 ++ " are dates.")
