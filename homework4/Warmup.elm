@@ -7,11 +7,11 @@ import Html exposing (Html, ul, li, text)
 import Regex exposing (..)
 import Date exposing (..)
 
-
---change : Int -> List Int
+coins: (Int, Int, Int, Int)
 coins =
     (25, 10, 5, 1)
 
+change : Int -> Result String ( Int, Int, Int, Int )
 change amount =
     if amount >= 0 then
         let
@@ -35,7 +35,7 @@ stripQuotes : String -> String
 stripQuotes =
     replace All (regex "['\"]") (\_ -> "")
 
---powers : Int -> Int -> List Int
+powers : Int -> Int -> Result String (List Int)
 powers base limit =
     if base < 0 then Err "negative base" else
 
@@ -55,10 +55,11 @@ sumOfCubesOfOdds lista =
         |> map (\x -> x ^ 3)
         |> sum
 
+millisecondsPerDay : Float
 millisecondsPerDay =
     24 * 60 * 60 * 1000
 
-
+daysBetween : String -> String -> Result String Float
 daysBetween  d1 d2 =
     case (d1 |> fromString, d2 |> fromString) of
         (Ok value1, Ok value2) -> Ok (((value2 |> toTime) - (value1 |> toTime)) / millisecondsPerDay)
