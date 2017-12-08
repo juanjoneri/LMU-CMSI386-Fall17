@@ -1,6 +1,6 @@
 module Warmup exposing (..)
 import String exposing (toList, fromList)
-import List exposing (concatMap, map, foldr, sum, filter)
+import List exposing (concatMap, map, foldr, sum, filter, rem)
 import List exposing (reverse, map, repeat)
 import Result exposing ( Result( Ok, Err ) )
 import Html exposing (Html, ul, li, text)
@@ -11,23 +11,18 @@ coins: (Int, Int, Int, Int)
 coins =
     (25, 10, 5, 1)
 
+divmod value modulo =
+    value\\modulo rem value modulo
+
 change : Int -> Result String ( Int, Int, Int, Int )
 change amount =
     if amount >= 0 then
         let
-            makeChange q n d p remainder =
-                if remainder == 0 then
-                    Ok (q, n, d, p)
-                else if remainder >= 25 then
-                    makeChange (remainder//25) n d p (remainder%25)
-                else if remainder >= 10 then
-                    makeChange q (remainder//10) d p (remainder%10)
-                else if remainder >= 5 then
-                    makeChange q n (remainder//5) p (remainder%5)
-                else
-                    makeChange q n d (p+1) (remainder-1)
+            (quarters, afterQuarters) = divmod (amount, 25)
+            (nickels, afterNickels) = divmod  (afterQuarters, 10)
+            (dimmes, afterDimes) = divmod  (aferNickels, 5)
         in
-            makeChange 0 0 0 0 amount
+            quarters nickels dimes afterDimes
     else
         Err "amount cannot be negative"
 
