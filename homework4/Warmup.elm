@@ -6,10 +6,6 @@ import Html exposing (Html, ul, li, text)
 import Regex exposing (regex, replace)
 import Date exposing (fromString, toTime)
 
-coins: (Int, Int, Int, Int)
-coins =
-    (25, 10, 5, 1)
-
 divmod: Int -> Int -> (Int, Int)
 divmod value modulo =
     (value // modulo, value % modulo)
