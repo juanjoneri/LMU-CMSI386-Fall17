@@ -1,6 +1,6 @@
 module Warmup exposing (..)
 import String exposing (toList, fromList)
-import List exposing (concatMap, map, foldr, sum, filter, rem)
+import List exposing (concatMap, map, foldr, sum, filter)
 import List exposing (reverse, map, repeat)
 import Result exposing ( Result( Ok, Err ) )
 import Html exposing (Html, ul, li, text)
@@ -11,18 +11,19 @@ coins: (Int, Int, Int, Int)
 coins =
     (25, 10, 5, 1)
 
+divmod: Int -> Int -> (Int, Int)
 divmod value modulo =
-    value\\modulo rem value modulo
+    (value // modulo, value % modulo)
 
 change : Int -> Result String ( Int, Int, Int, Int )
 change amount =
     if amount >= 0 then
         let
-            (quarters, afterQuarters) = divmod (amount, 25)
-            (nickels, afterNickels) = divmod  (afterQuarters, 10)
-            (dimmes, afterDimes) = divmod  (aferNickels, 5)
+            (quarters, afterQuarters) = divmod amount 25
+            (nickels, aferNickels) = divmod  afterQuarters 10
+            (dimmes, pennies) = divmod  aferNickels 5
         in
-            quarters nickels dimes afterDimes
+            Ok (quarters, nickels, dimmes, pennies)
     else
         Err "amount cannot be negative"
 
@@ -44,8 +45,8 @@ powers base limit =
 
 
 sumOfCubesOfOdds : List Int -> Int
-sumOfCubesOfOdds lista =
-    lista
+sumOfCubesOfOdds numbers =
+    numbers
         |> filter (\x -> x % 2 /= 0)
         |> map (\x -> x ^ 3)
         |> sum
